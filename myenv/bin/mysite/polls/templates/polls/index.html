@@ -1,6 +1,11 @@
 <!-- template 안에 그냥 html을 넣으면 django는 다른앱의 template과 구분할 수 없기 때문에
 디렉토리를 바꿔준 다음에 관리를 해야한다. -->
 
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}

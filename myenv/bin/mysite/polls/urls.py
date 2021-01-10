@@ -14,7 +14,7 @@
 # ]
 
 # 제너릭 코드 작성을 위해 수정
-# as_view 함수를 호출하여 view를 호출하게 됨
+# as_view 함;/2
 from django.urls import path
 
 from . import views
