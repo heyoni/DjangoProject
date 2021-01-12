@@ -1,4 +1,2 @@
-myenv/lib
-myenvi/lib
-mysite/lib
-
+**/lib/
+config/settings.py
