@@ -1,5 +1,5 @@
 from django import forms
-from pybo.models import Question
+from pybo.models import Question, Answer
 
 # 장고폼, 장고에서 기본적으로 제공함
 # 폼과 모델폼이 있는데 여기서는 모델을 상속받았으므로 모델폼이라고 함
@@ -10,11 +10,14 @@ class QuestionForm(forms.ModelForm):
     class Meta: # 이 클래스가 반드시 필요
         model = Question # 모델 : Question과 연결되어있음을 뜻함
         fields = ['subject', 'content']# 모델의 필드
-        widgets = {
-            'subject' : forms.TextInput(attrs={'class':'form-control'}),
-            'content' : forms.Textarea(attrs={'class':'form-control', 'rows':10}),
-        }
         labels = {
             'subject' : '제목',
             'content' : '내용',
+        }
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['content']
+        labels = {
+            'content': '답변내용',
         }
