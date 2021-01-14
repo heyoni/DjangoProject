@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load pybo_filter %}
+
 {% block content %}
 <!-- {% load static %} -->
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
@@ -27,9 +29,17 @@
         {% if question_list %}
         {% for question in question_list %}
         <tr>
-            <td>{{ forloop.counter }}</td>
+
+            <!-- <td>{{ forloop.counter }}</td> -->
+            <!-- 게시물 번호 적용하기 : 템플릿 필터 사용 -->
+            <td>{{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }} </td>
             <td>
-                <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+                <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}
+                    <!-- 질문에 달린 답변 개수 표시하기 -->
+                    {% if question.answer_set.count > 0 %}
+                    <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
+                    {% endif %}
+                </a>
             </td>
             <td>{{ question.create_date }}</td>
         </tr>
