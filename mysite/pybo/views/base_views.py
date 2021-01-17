@@ -5,7 +5,6 @@ from django.core.paginator import Paginator
 from ..models import Question
 
 
-
 def index(request):
     """
     pybo 목록 출력
