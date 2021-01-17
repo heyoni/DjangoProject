@@ -11,6 +11,12 @@
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;">{{ question.content }}</div>
             <div class="d-flex justify-content-end">
+                {% if question.modify_date %}
+                <div class="badge badge-light p-2 text-left mx-3">
+                    <div class="mb-2" style="color:black">modified at</div>
+                    <div style="color:black">{{ question.modify_date }}</div>
+                </div>
+                {% endif %}
                 <div class="badge badge-light p-2 text-left">
                     <div class="mb-2" style="color:black">{{ question.author.username }}</div>
                     <div style="color:black">{{ question.create_date }}</div>
