@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 
 
+from ..models import Question
+
+
 
 def index(request):
     """

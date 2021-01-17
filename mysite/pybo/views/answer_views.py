@@ -3,8 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .forms import QuestionForm
-from ..models import Question
+from ..forms import AnswerForm
+from ..models import Question, Answer
 
 @login_required(login_url='common:login')
 def answer_create(request, question_id):
@@ -30,7 +30,7 @@ def answer_create(request, question_id):
     # return redirect('pybo:detail', question_id=question.id)
 
 
-    @login_required(login_url='common:login')
+@login_required(login_url='common:login')
 def answer_modify(request, answer_id):
     """
     pybo 답변수정
