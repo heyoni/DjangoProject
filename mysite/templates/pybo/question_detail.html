@@ -1,36 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
 
-<h1>{{ question.subject }}</h1>
-
-<div>
-    {{ question.content }}
-</div>
-
-
-<h5>{{ question.answer_set.count }}개의 답변이 있습니다.</h5>
-<div>
-    <ul>
-    {% for answer in question.answer_set.all %}
-        <li>{{ answer.content }}</li>
-    {% endfor %}
-    </ul>
-</div>
-
-
-<form action="{% url 'pybo:answer_create' question.id %}" method="POST">
-{% csrf_token %}
-<textarea name='content' id='content' rows='15'></textarea>
-<input type="submit" value="답변 등록">
-</form> -->
-
-<!-- {% load static %} -->
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}"> -->
-
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
 <div class="container my-3">
     <h2 class="border-bottom py-2">{{ question.subject }}</h2>
     <div class="card my-3">
@@ -38,14 +12,17 @@
             <div class="card-text" style="white-space: pre-line;">{{ question.content }}</div>
             <div class="d-flex justify-content-end">
                 <div class="badge badge-light p-2 text-left">
-                    <div class="mb-2">{{ question.author.username }}</div>
-                    <div>{{ question.create_date }}</div>
+                    <div class="mb-2" style="color:black">{{ question.author.username }}</div>
+                    <div style="color:black">{{ question.create_date }}</div>
                 </div>
             </div>
-            <!-- 질문 수정기능 -->
+            <!-- 질문 수정, 삭제기능 -->
             {% if request.user == question.author %}
             <div class="my-3">
-                <a href="{% url 'pybo:question_modify' question.id %}" class="btn btn-sm btn-outline-secondary">수정</a>
+                <a href="{% url 'pybo:question_modify' question.id  %}" 
+                   class="btn btn-sm btn-outline-secondary">수정</a>
+                <a href="#" class="delete btn btn-sm btn-outline-secondary"
+                    data-uri="{% url 'pybo:question_delete' question.id  %}">삭제</a>
             </div>
             {% endif %}
         </div>
@@ -61,6 +38,16 @@
                     <div>{{ answer.create_date }}</div>
                 </div>
             </div>
+            <!-- 답변 수정, 삭제기능 -->
+            {% if request.user == answer.author %}
+            <div class="my-3">
+                <a href="{% url 'pybo:answer_modify' answer.id  %}" 
+                   class="btn btn-sm btn-outline-secondary">수정</a>
+                <a href="#" class="delete btn btn-sm btn-outline-secondary " 
+                   data-uri="{% url 'pybo:answer_delete' answer.id  %}">삭제</a>
+    
+            </div>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
@@ -85,4 +72,15 @@
     </form>
 </div>
 
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+$(document).ready(function(){
+    $(".delete").on('click', function() {
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = $(this).data('uri');
+        }
+    });
+});
+</script>
 {% endblock %}
