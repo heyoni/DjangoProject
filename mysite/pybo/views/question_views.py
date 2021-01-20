@@ -2,9 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.core.paginator import Paginator
+
 
 from ..forms import QuestionForm
-from ..models import Question
+from ..models import Question, Answer
 
 
 
@@ -61,3 +63,19 @@ def question_delete(request, question_id):
         return redirect('pybo:detail', question_id=question.id)
     question.delete()
     return redirect('pybo:index')
+
+def question_index(request):
+    """
+    pybo 답변목록 출력
+    """
+    page = request.GET.get('detail','1')
+
+    # 조회는 추천순
+    answer_list = Answer.objects.order_by('voter')
+
+    # 페이징처리
+    paginator = Paginator(answer_list, 5)
+    page_obj = paginator.get_page(page)
+
+    context = {'question_detail':page_obj}
+    return render(request, 'pybo/question_detail.html',context)
