@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 
 
-from ..models import Question,Answer
+from ..models import Question, Answer
 
 
 def index(request):
@@ -47,18 +47,15 @@ def detail(request, question_id):
     """
     question = get_object_or_404(Question, pk=question_id)
 
-    """
-    pybo 답변목록 출력
-    """
-    page = request.GET.get('detail','1')
+    # 입력
+    page=request.GET.get('page', '1')
 
-    # 조회는 추천순
-    answer_list = Answer.objects.order_by('voter')
+    #조회
+    answer_list = Answer.objects.filter(question=question).order_by('-voter')
 
-    # 페이징처리
+    #페이징
     paginator = Paginator(answer_list, 5)
     page_obj = paginator.get_page(page)
 
-    # context = {'question_detail':page_obj}
-    context = {'question': question, 'question_detail':page_obj}
+    context={'answer_list': page_obj, 'question': question}
     return render(request, 'pybo/question_detail.html', context)

@@ -64,18 +64,3 @@ def question_delete(request, question_id):
     question.delete()
     return redirect('pybo:index')
 
-# def question_index(request):
-#     """
-#     pybo 답변목록 출력
-#     """
-#     page = request.GET.get('detail','1')
-
-#     # 조회는 추천순
-#     answer_list = Answer.objects.order_by('voter')
-
-#     # 페이징처리
-#     paginator = Paginator(answer_list, 5)
-#     page_obj = paginator.get_page(page)
-
-#     context = {'question_detail':page_obj}
-#     return render(request, 'pybo/question_detail.html',context)
