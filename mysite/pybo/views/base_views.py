@@ -1,8 +1,10 @@
 from django.core.paginator import Paginator
 from django.db.models import Q, Count
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
 
-from ..models import Question
+
+from ..models import Question,Answer
 
 
 def index(request):
@@ -44,5 +46,19 @@ def detail(request, question_id):
     pybo 내용 출력
     """
     question = get_object_or_404(Question, pk=question_id)
-    context = {'question': question}
+
+    """
+    pybo 답변목록 출력
+    """
+    page = request.GET.get('detail','1')
+
+    # 조회는 추천순
+    answer_list = Answer.objects.order_by('voter')
+
+    # 페이징처리
+    paginator = Paginator(answer_list, 5)
+    page_obj = paginator.get_page(page)
+
+    # context = {'question_detail':page_obj}
+    context = {'question': question, 'question_detail':page_obj}
     return render(request, 'pybo/question_detail.html', context)

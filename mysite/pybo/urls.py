@@ -10,7 +10,7 @@ urlpatterns = [
     path('<int:question_id>/', base_views.detail, name='detail'),
 
     # question_views.py
-    path('<int:question_id>', question_views.question_index, name='question_index'),
+    # path('<int:question_id>/', question_views.question_index, name='question_index'),
     path('question/create/', question_views.question_create, name='question_create'),
     path('question/modify/<int:question_id>/', question_views.question_modify, name='question_modify'),
     path('question/delete/<int:question_id>/', question_views.question_delete, name='question_delete'),
