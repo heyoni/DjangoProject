@@ -50,10 +50,10 @@ def detail(request, question_id):
     # 입력
     page=request.GET.get('page', '1')
 
-    #조회
+    # 조회
     answer_list = Answer.objects.filter(question=question).order_by('-voter')
 
-    #페이징
+    # 페이징
     paginator = Paginator(answer_list, 5)
     page_obj = paginator.get_page(page)
 
