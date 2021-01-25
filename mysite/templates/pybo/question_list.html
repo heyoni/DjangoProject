@@ -25,6 +25,8 @@
             <th style="width:50%">제목</th>
             <th>글쓴이</th>
             <th>작성일시</th>
+            <th>조회수</th>
+
         </tr>
         </thead>
         <tbody>
@@ -36,18 +38,27 @@
                 {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
             </td>
             <td>
+                <!-- 추천 -->
                 {% if question.voter.all.count > 0 %}
-                <span class="badge badge-warning px-2 py-1">{{ question.voter.all.count }}</span>
+                <span class="badge badge-warning px-2 py-1" style="color: black;">{{ question.voter.all.count }}</span>
                 {% endif %}
             </td>
+
+                <!-- 제목 -->
             <td class="text-left">
                 <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
                 {% if question.answer_set.count > 0 %}
                 <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
                 {% endif %}
             </td>
-            <td>{{ question.author.username }}</td>  <!-- 글쓴이 추가 -->
-            <td>{{ question.create_date }}</td>
+            <td>{{ question.author.username }}</td>  <!-- 글쓴이 -->
+            <td>{{ question.create_date }}</td> <!-- 작성일자 -->
+            <td>
+                <!-- 조회수 -->
+                {% if question.voter.all.count > 0 %}
+                <span class="badge badge-warning px-2 py-1" style="color: black;">{{ question.voter.all.count }}</span>
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
         {% else %}
