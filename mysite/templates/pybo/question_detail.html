@@ -2,11 +2,11 @@
 {% load pybo_filter %}
 {% block content %}
 <div class="container my-3">
-    <!-- 사용자 오류 표시 -->
+    <!-- 사용자오류 표시 -->
     {% if messages %}
     <div class="alert alert-danger my-3" role="alert">
-    {% for message in messages % }
-        <strong>{{ message.tags }}</strong>    
+    {% for message in messages %}
+        <strong>{{ message.tags }}</strong>
         <ul><li>{{ message.message }}</li></ul>
     {% endfor %}
     </div>
