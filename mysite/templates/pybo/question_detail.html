@@ -2,11 +2,11 @@
 {% load pybo_filter %}
 {% block content %}
 <div class="container my-3">
-    <!-- 사용자오류 표시 -->
+    <!-- 사용자 오류 표시 -->
     {% if messages %}
     <div class="alert alert-danger my-3" role="alert">
-    {% for message in messages %}
-        <strong>{{ message.tags }}</strong>
+    {% for message in messages % }
+        <strong>{{ message.tags }}</strong>    
         <ul><li>{{ message.message }}</li></ul>
     {% endfor %}
     </div>
@@ -74,9 +74,7 @@
         </div>
     </div>
     <h5 class="border-bottom my-3 py-2">{{question.answer_set.count}}개의 답변이 있습니다.</h5>
-
-
-    
+    {% for answer in question.answer_set.all %}
     <a name="answer_{{ answer.id }}"></a>
     <div class="row my-3">
         <div class="col-1">  <!-- 추천영역 -->
@@ -137,45 +135,7 @@
             </div>
         </div>
     </div>
-    
     {% endfor %}
-    <ul class="pagination justify-content-center">
-        <!----이전페이지---->
-        {% if answer_list.has_previous %}
-        <li class="page-item">
-            <a class="page-link" href="?page={{answer_list.previous_page_number}}">이전</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-        </li>
-        {% endif %}
-        <!-----페이지리스트----->
-
-        {% for page_number in answer_list.paginator.page_range %}
-            {% if page_number == answer_list.number %}
-
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{page_number}}">{{page_number}}</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{page_number}}"></a>
-            </li>
-            {% endif %}
-        {% endfor %}
-        <!-----다음페이지------>
-        {% if answer_list.has_next %}
-        <li class="page-item">
-            <a class="page-link" href="?page={{answer_list.next_page_number}}">다음</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-        </li>
-        {% endif %}
-    </ul>
-    <!-----페이징처리 끝------->
     <form action="{% url 'pybo:answer_create' question.id %}" method="post" class="my-3">
         {% csrf_token %}
         {% if form.errors %}

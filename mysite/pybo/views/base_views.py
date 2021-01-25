@@ -47,6 +47,11 @@ def detail(request, question_id):
     """
     question = get_object_or_404(Question, pk=question_id)
 
+    # 조회수
+    default_view_count = question.hit_counter
+    question.hit_counter = default_view_count + 1
+    question.save()
+
     # 입력
     page=request.GET.get('page', '1')
 
@@ -59,3 +64,4 @@ def detail(request, question_id):
 
     context={'answer_list': page_obj, 'question': question}
     return render(request, 'pybo/question_detail.html', context)
+
