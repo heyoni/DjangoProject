@@ -7,4 +7,5 @@ def main(request):
     # (보통 render의 함수명과 경로 명을 일치시켜줌)
 
 
-def 
+def test(request):
+    return render(request, 'test.html')
