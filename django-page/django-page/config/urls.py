@@ -21,6 +21,6 @@ from adventure import urls as adventure_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.main),
-    path('lovely/',include(urls)), # lovely로 시작하는 경로는 모두 lovely에서 관리해준다.
+    path('lovely/',include(urls)), 
     path('adventure/',include(adventure_urls))
 ]
