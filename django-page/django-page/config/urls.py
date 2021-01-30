@@ -17,10 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from lovely import urls, views
 from adventure import urls as adventure_urls
+from adventures import urls as adventures_urls
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.main),
+    path('',views.main, name="main"),
     path('lovely/',include(urls)), 
-    path('adventure/',include(adventure_urls))
+    path('adventure/',include(adventure_urls)),
+    path('adventures/',include(adventures_urls)),
+
 ]
