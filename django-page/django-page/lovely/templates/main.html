@@ -10,8 +10,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>모험을 만들어 봅시다.</h1>
-    <a href="">first</a>
+    <h1>모험을 시작해 봅시다.</h1>
+    <h2>첫페이지 입니다.</h2>
+    <h3>무엇을 할까요?</h3>
+    <a href="{% url 'input_name' %}">들어간다</a><br>
+    <a href="{% url 'out' %}">나간다</a>
+
 </body>
 </html>
 {% endblock %}
