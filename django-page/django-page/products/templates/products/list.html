@@ -17,9 +17,8 @@
                 <h5 class="card-title">{{ item.title }}</h5>
                 <h3 class="card-subtitle">{{ item.price }}원</h3>
                 <p class="card-text">{{ item.description }}</p>
-                <a href="#" class="btn btn-primary">보러가기</a>
+                <a href="{% url 'products:detail' item.pk %}" class="btn btn-primary">보러가기</a>
             </div>
-
         </div>
         {% endfor %}
     </div>

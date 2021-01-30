@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>상품 상세페이지 입니다.</h1>
+    <h2>상품 이름 : {{ product.title }}</h2>
+    <h2>상품 가격 : {{ product.price }}</h2>
+    <p>상품 설명 : {{ product.description }}</p>
+
+    <a href="{% url 'products:edit' product.pk %}" class="btn btn-primary">수정</a>
+    <a href="#" class="btn btn-primary">삭제</a>
+</body>
+</html>
+{% endblock %}
