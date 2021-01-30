@@ -8,7 +8,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>세번째 페이지</h1>
+    <h1>이름을 알려주세요</h1>
+    <form action="{% url 'get_name' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name='name'>
+        <input type="submit" value="확인">
+    </form>
 </body>
 </html>
 {% endblock %}
+
+
+
+
+
+
+
+
