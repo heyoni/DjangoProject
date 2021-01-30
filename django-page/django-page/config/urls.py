@@ -18,6 +18,8 @@ from django.urls import path, include
 from lovely import urls, views
 from adventure import urls as adventure_urls
 from adventures import urls as adventures_urls
+from products import urls as products_urls
+
 
 
 urlpatterns = [
@@ -26,5 +28,7 @@ urlpatterns = [
     path('lovely/',include(urls)), 
     path('adventure/',include(adventure_urls)),
     path('adventures/',include(adventures_urls)),
+    path('products/',include(products_urls)),
+
 
 ]
