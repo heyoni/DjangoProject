@@ -30,5 +30,4 @@ urlpatterns = [
     path('adventures/',include(adventures_urls)),
     path('products/',include(products_urls)),
 
-
 ]

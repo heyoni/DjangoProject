@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +10,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>두번째 페이지</h1>
+    <h1>진짜...?</h1>
+    <img src="{% static 'door.jpeg'%}" alt="문">
 </body>
 </html>
+{% endblock %}
