@@ -6,6 +6,7 @@ class Product(models.Model):
     description = models.TextField(null=True)
     price = models.IntegerField()
     view_counts = models.IntegerField(default=0)
+    image = models.ImageField(upload_to='images/', null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

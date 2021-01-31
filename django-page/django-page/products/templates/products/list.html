@@ -12,16 +12,19 @@
 
     <div class="row">
         {% for item in products %}
-        <div class="card col-4" style="width: 18rem;">
+        <div class="card" style="width: 18rem;">
+            {% if item.image %}
+                <img src="{{ item.image.url }}" class="card-img-top" alt="...">
+            {% endif %}
             <div class="card-body">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <h3 class="card-subtitle">{{ item.price }}원</h3>
-                <p class="card-text">{{ item.description }}</p>
-                <a href="{% url 'products:detail' item.pk %}" class="btn btn-primary">보러가기</a>
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">{{ item.price }}원</p>
+              <a href="{% url 'products:detail' item.pk %}" class="btn btn-primary">보러가기</a>
             </div>
-        </div>
+          </div>
         {% endfor %}
     </div>
 </body>
 </html>
 {% endblock %}
+

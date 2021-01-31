@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Product
+import pdb
 
 
 def product_list(request):
@@ -12,7 +13,9 @@ def create(request):
         title = request.POST.get('title')
         price = request.POST.get('price')
         description = request.POST.get('description')
-        product = Product.objects.create(title=title, price=price, description=description)
+        image = request.FILES.get('image')
+        # pdb.set_trace()
+        product = Product.objects.create(title=title, price=price, description=description, image=image)
         return redirect('products:list')
     return render(request, 'products/create.html')
 
