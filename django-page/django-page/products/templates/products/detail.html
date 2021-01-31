@@ -11,10 +11,36 @@
     <h1>상품 상세페이지 입니다.</h1>
     <h2>상품 이름 : {{ product.title }}</h2>
     <h2>상품 가격 : {{ product.price }}</h2>
+    <h4>조회수 : {{ product.view_counts }}</h4>
     <p>상품 설명 : {{ product.description }}</p>
 
+
     <a href="{% url 'products:edit' product.pk %}" class="btn btn-primary">수정</a>
-    <a href="#" class="btn btn-primary">삭제</a>
+    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">삭제</a>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">정말 삭제하시겠습니까?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                이 작업은 되돌릴 수 없습니다.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <form action="{% url 'products:delete' product.pk %}" method="POST"> <!-- post로 보내고 싶으면 form을 써야햠 -->
+                    {% csrf_token %}
+                    <input type="submit" value="삭제!" class="btn btn-primary">
+                </form>
+                <!-- <a href="{% url 'products:delete' product.pk %}" class="btn btn-primary">삭제</a> 이 방법은 get-->
+            </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+
+
+
 {% endblock %}
