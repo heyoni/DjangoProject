@@ -11,6 +11,7 @@
     <title>Adventure</title>
   </head>
   <body>
+<<<<<<< Updated upstream
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'main' %}">HOME</a>
@@ -30,12 +31,19 @@
         </div>
 
     </nav>
+=======
+    {% include 'navbar.html' %}
+>>>>>>> Stashed changes
 
     <div class="container">
         {% block content %}
         <!-- 여기 안에 django에서 만든 html파일들을 적어준다 -->
         {% endblock %}
     </div>
+
+    {% include 'footer.html' %}
+
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 

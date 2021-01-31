@@ -10,10 +10,13 @@
 <body>
     <h1>상품 정보 수정하기</h1>
 
-    <form action="{% url 'products:update' product.pk %}" method='POST'>
+    <form action="{% url 'products:update' product.pk %}" method='POST' enctype="multipart/form-data">
         {% csrf_token %}
         <label>상품 이름</label><br>
         <input type="text" name="title" value="{{ product.title }}"><br><br>
+
+        <label>상품 이미지</label><br>
+        <input type="file" name="image"><br><br>
 
         <label>가격</label><br>
         <input type="number" name="price" value="{{ product.price }}"><br><br>

@@ -10,10 +10,13 @@
 </head>
 <body>
     <h1>상품을 생산합니다.</h1>
-    <form action="{% url 'products:create' %}" method='POST'>
+    <form action="{% url 'products:create' %}" method='POST' enctype="multipart/form-data">
         {% csrf_token %}
         <label>상품 이름</label><br>
         <input type="text" name="title"><br><br>
+
+        <label>상품 이미지</label><br>
+        <input type="file" name="image"><br><br>
 
         <label>가격</label><br>
         <input type="number" name="price"><br><br>

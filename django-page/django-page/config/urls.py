@@ -19,7 +19,8 @@ from lovely import urls, views
 from adventure import urls as adventure_urls
 from adventures import urls as adventures_urls
 from products import urls as products_urls
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -29,5 +30,9 @@ urlpatterns = [
     path('adventure/',include(adventure_urls)),
     path('adventures/',include(adventures_urls)),
     path('products/',include(products_urls)),
+<<<<<<< Updated upstream
 
 ]
+=======
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> Stashed changes
