@@ -1,22 +1,35 @@
-
+{% extends 'base.html' %}
+{% block content %}
 <!-- 이 페이지의 원래 명은 question_list.html입니다. 보기 편하게 하기 위해 index로 변경해줌 -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>리스트를 보여줄 페이지, 첫번째 페이지</h1>
-    {% if question_list %}
-        <ul>
-            {% for question in question_list %}
-            <li><a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>질문이 없습니다.</p>
-    {% endif %}
-</body>
-</html>
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="thead-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if question_list %}
+        {% for question in question_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+            </td>
+            <td>{{ question.create_date }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">질문이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">
+        질문 등록하기
+    </a>
+</div>
+{% endblock %}
