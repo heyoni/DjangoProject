@@ -1,0 +1,22 @@
+
+<!-- 이 페이지의 원래 명은 question_list.html입니다. 보기 편하게 하기 위해 index로 변경해줌 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>리스트를 보여줄 페이지, 첫번째 페이지</h1>
+    {% if question_list %}
+        <ul>
+            {% for question in question_list %}
+            <li><a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>질문이 없습니다.</p>
+    {% endif %}
+</body>
+</html>
