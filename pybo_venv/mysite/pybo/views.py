@@ -2,12 +2,26 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Question
 from .forms import QuestionForm, AnswerForm
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
     # pybo 목록 출력
+
+    # 입력 인자
+    page = request.GET.get('page','1')
+    # 아무것도 입력되어 있지 않으면 첫페이지로 가라는 뜻
+
+    # 조회
     question_list = Question.objects.order_by('-create_date')
-    content = {'question_list':question_list}
+    # 역순으로 정렬해서 보여주겠다.
+
+    # 페이징 처리
+    paginator = Paginator(question_list, 10)
+    page_obj = paginator.get_page(page)
+    # 페이지당 10개만 보여줄것
+
+    content = {'question_list':page_obj}
 
     # return render(request, 'pybo/question_list.html') # 원래 링크인데, question_list에서 index리스트로 바꿔줬음
     return render(request, 'pybo/index.html', content)
