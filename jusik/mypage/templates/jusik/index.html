@@ -2,7 +2,36 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>안녕 여기는 메인페이지야!</h1>
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="text-center thead-dark">
+            <th>날짜</th>
+            <th style="width:15%">종목명</th>
+            <th>체결수량</th>
+            <th>매입금액</th>
+            <th>체결금액</th>
+            <th>실현손익</th>
+            <th>매입단가</th>
+            <th>체결단가</th>
+            <th>현재가</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <!-- 페이징 부분 -->
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+
+        </li>
+    </ul>
+    <!-- 페이징 처리 끝 -->
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="#" class="btn btn-primary">
+            내 종목 등록하기
+        </a>
+    </div>
 
 {% endblock %}
 
