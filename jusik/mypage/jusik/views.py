@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Jusik_list
 
 
@@ -11,6 +11,6 @@ def index(request):
 
 def detail(request, jusik_id):
     # 주식 내용 출력(구체적)
-    jusik = Jusik_list.objects.get(id=jusik_id)
+    jusik = get_object_or_404(Jusik_list, pk=jusik_id)
     context = {'jusik':jusik}
     return render(request, 'jusik/jusik_detail.html',context)
