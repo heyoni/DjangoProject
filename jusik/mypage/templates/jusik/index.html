@@ -22,10 +22,8 @@
         {% if jusik_list %}
         {% for jusik in jusik_list %}
         <tr class='text-center'>
-            <td>
-               <a href="#">{{ jusik.buy_date }}</a> 
-            </td>
-            <td>{{ jusik.stock_name }}</td>
+            <td>{{ jusik.buy_date }} </td>
+            <td><a href="{% url 'jusik:detail' jusik.id %}">{{ jusik.stock_name }}</a></td>
             <td>{{ jusik.amount }}</td>
             <td>{{ jusik.buy_price }}</td>
             <td>{{ jusik.buy_amount }}</td>
