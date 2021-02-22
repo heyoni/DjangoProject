@@ -1,13 +1,20 @@
 
 {% extends 'base.html' %}
 {% block content %}
+<h1 class="text-center">
+    {{ jusik.stock_name }}
+</h1>
 
-<h1> 주식 상세 페이지 </h1>
-<h1>{{ jusik.stock_name }}</h1>
-<div>
-    {{ jusik.buy_price }}
-    {{ jusik.sell_price }}
+<!-- 여기다가는 표 넣기(나중에) -->
+<div class="container">
+    <div class="row align-items-start">
+      <div class="col">
+        {{ jusik.buy_price }}
+      </div>
+      <div class="col">
+        {{ jusik.sell_price }}
+      </div>
+    </div>
 </div>
-
 
 {% endblock %}
