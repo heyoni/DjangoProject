@@ -14,3 +14,9 @@ def detail(request, jusik_id):
     jusik = get_object_or_404(Jusik_list, pk=jusik_id)
     context = {'jusik':jusik}
     return render(request, 'jusik/jusik_detail.html',context)
+
+
+def jusik_create(request):
+    # 주식 등록
+    form = JusikForm()
+    return render(request, 'jusik/jusik_form.html', {'form':form})
