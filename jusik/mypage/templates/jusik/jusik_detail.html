@@ -1,20 +1,46 @@
 
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="text-center">
+<h1 class="text-center display-3">
     {{ jusik.stock_name }}
 </h1>
-
 <!-- 여기다가는 표 넣기(나중에) -->
-<div class="container">
-    <div class="row align-items-start">
-      <div class="col">
-        {{ jusik.buy_price }}
-      </div>
-      <div class="col">
-        {{ jusik.sell_price }}
-      </div>
-    </div>
-</div>
+
+
+<table class="table table-striped text-center" style="width:40%">
+  
+  <tbody>
+    <tr>
+      <th scope="row">매입가</th>
+      <td>{{ jusik.buy_price }} 원</td>
+    </tr>
+    <tr>
+      <th scope="row">매도가</th>
+      <td>{{ jusik.sell_price }} 원</td>
+    </tr>
+    <tr>
+      <th scope="row">수량</th>
+      <td>{{ jusik.amount }} 주</td>
+    </tr>
+    <tr>
+      <th scope="row">실현손익</th>
+      <td>{{ jusik.profit }} 원</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<table class="table text-center" style="width:40%">
+  <tbody>
+  <tr>
+    <th scope="row">매입단가</th>
+    <td>{{ jusik.buy_amount }} 원</td>
+  </tr>
+  <tr>
+    <th scope="row">체결단가</th>
+    <td>{{ jusik.sell_amount }} 원</td>
+  </tr>
+</tbody>
+</table>
 
 {% endblock %}
