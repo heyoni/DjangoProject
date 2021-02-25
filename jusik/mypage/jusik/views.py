@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Jusik_list
+from .forms import JusikForm
 
 
 def index(request):
@@ -16,7 +17,16 @@ def detail(request, jusik_id):
     return render(request, 'jusik/jusik_detail.html',context)
 
 
-def jusik_create(request):
+def create(request):
     # 주식 등록
-    form = JusikForm()
-    return render(request, 'jusik/jusik_form.html', {'form':form})
+    if request.method == 'POST':
+        form = JusikForm(request.POST)
+        if form.is_vaild():
+            jusik = form.save(commit=False)
+            jusik.save()
+            return redirect('jusik:index')
+
+    else:
+        form = JusikForm()
+    context = {'form':form}
+    return render(request, 'jusik/create.html', context)

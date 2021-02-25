@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">내 종목 등록하기</h5>
+    <form action="" method="post">
+        {% csrf_token %}
+        <!-- 오류표시 start -->
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+            {% for field in form %}
+                {% if field.errors %}
+                <strong>{{ field.label }}</strong>
+                {{ field.errors }}
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+        <!-- 오류표시 end -->
+
+        <div class="col-3">
+            <label for="stock_name">종목명</label>
+            <input type="text" name="stock_name" id="stock_name" class="form-control col-5" value="{{ form.stock_name.value|default_if_none:'' }}">
+        </div>
+        <div class="col-3">
+            <label for="amount">수량</label>
+            <input type="number" name="amount" id="amount" min="1" class="form-control" value="{{ form.amount.value|default_if_none:'' }}">
+        </div>
+        <div class="col-3">
+            <label for="buy_price">매수가격</label>
+            <input type="number" name="buy_price" id="buy_price" min="0" class="form-control" value="{{ form.buy_price.value|default_if_none:'' }}">
+        </div>
+        <div class="col-3">
+            <label for="sell_price">매도가격</label>
+            <input type="number" name="sell_price" id="sell_price" min="0" class="form-control" value="{{ form.sell_price.value|default_if_none:'' }}">
+        </div>
+        <div class="col-3">
+            <label for="buy_date">날짜</label>
+            <input type="date" name="date" id="date" min="0" class="form-control" value="{{ form.date.value|default_if_none:'' }}">
+        </div>
+        <button type="submit" class="btn btn-primary">저장하기</button>
+    </form>
+</div>
+
+{% endblock %}
