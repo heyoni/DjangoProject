@@ -5,7 +5,7 @@ from .forms import JusikForm
 
 def index(request):
     # 주식 목록 출력
-    jusik_list = Jusik_list.objects.order_by('buy_date')
+    jusik_list = Jusik_list.objects.order_by('stock_name')
     context = {'jusik_list':jusik_list}
     return render(request, 'jusik/index.html', context)
 
