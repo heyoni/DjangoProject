@@ -22,14 +22,14 @@
         {% if jusik_list %}
         {% for jusik in jusik_list %}
         <tr class='text-center'>
-            <td>{{ jusik.buy_date }} </td>
+            <td>{{ jusik.date }} </td>
             <td><a href="{% url 'jusik:detail' jusik.id %}">{{ jusik.stock_name }}</a></td>
-            <td>{{ jusik.amount }}</td>
+            <td>{{ jusik.amount }}</td> 
             <td>{{ jusik.buy_price }}</td>
-            <td>{{ jusik.buy_price }}</td>
+            <td>jusik.buy_price * jusik.amount</td>
             <td>{{ jusik.sell_price }}</td>
-            <td>{{ jusik.sell_amount }}</td>
-            <td>{{ jusik.profit }}</td>
+            <td>jusik.sell_price * jusik.amount</td>
+            <td>jusik.sell_price - jusik.buy_price</td>
         </tr>
         {% endfor %}
         {% else %}
