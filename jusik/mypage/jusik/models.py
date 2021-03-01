@@ -6,10 +6,10 @@ class Jusik_list(models.Model):
     date = models.DateField(default='2020-02-23')
     amount = models.IntegerField()
     buy_price = models.IntegerField()
-    # buy_amount = models.IntegerField()
+    amount_buy = models.IntegerField(default=0)
     sell_price = models.IntegerField()
-    # sell_amount = models.IntegerField()
-    # profit = models.IntegerField()
+    amount_sell = models.IntegerField(default=0)
+    result = models.IntegerField(default=0)
 
     def __str__(self):
         return self.stock_name

@@ -7,12 +7,12 @@
         <thead>
         <tr class="text-center thead-dark">
             <th>날짜</th>
-            <th style="width:15%">종목명</th>
-            <th>체결수량</th>
+            <th style="width:10%">종목명</th>
+            <th >체결수량</th>
             <th>매입단가</th>
-            <th>매입금액</th>
-            <th>체결단가</th>
-            <th>체결금액</th>
+            <th>총 매입금액</th>
+            <th>매도단가</th>
+            <th>총 매도금액</th>
             <th>실현손익</th>
             <th>현재가</th>
         </tr>
@@ -26,10 +26,11 @@
             <td><a href="{% url 'jusik:detail' jusik.id %}">{{ jusik.stock_name }}</a></td>
             <td>{{ jusik.amount }}</td> 
             <td>{{ jusik.buy_price }}</td>
-            <td>jusik.buy_price * jusik.amount</td>
+            <td>{{ jusik.amount_buy }}</td>
             <td>{{ jusik.sell_price }}</td>
-            <td>jusik.sell_price * jusik.amount</td>
-            <td>jusik.sell_price - jusik.buy_price</td>
+            <td>{{ jusik.amount_sell }}</td>
+            <td>{{ jusik.result }}</td>
+            <td>-</td>
         </tr>
         {% endfor %}
         {% else %}

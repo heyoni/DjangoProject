@@ -21,7 +21,7 @@ def create(request):
     # 주식 등록
     if request.method == 'POST':
         form = JusikForm(request.POST)
-        if form.is_vaild():
+        if form.is_valid():
             jusik = form.save(commit=False)
             jusik.save()
             return redirect('jusik:index')
