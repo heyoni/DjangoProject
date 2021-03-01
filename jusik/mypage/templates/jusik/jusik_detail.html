@@ -14,8 +14,16 @@
       <td>{{ jusik.buy_price }} 원</td>
     </tr>
     <tr>
+      <th scope="row">총 매입금액</th>
+      <td style="font-weight: bold;">{{ jusik.amount_buy }} 원</td>
+    </tr>
+    <tr>
       <th scope="row">매도가</th>
       <td>{{ jusik.sell_price }} 원</td>
+    </tr>
+    <tr>
+      <th scope="row">총 매도금액</th>
+      <td style="font-weight: bold;">{{ jusik.amount_sell }} 원</td>
     </tr>
     <tr>
       <th scope="row">수량</th>
@@ -29,17 +37,5 @@
   </tbody>
 </table>
 
-<table class="table text-center" style="width:40%; margin-left: auto; margin-right: auto;">
-  <tbody>
-  <tr>
-    <th scope="row">매입단가</th>
-    <td>{{ jusik.amount_buy }} 원</td>
-  </tr>
-  <tr>
-    <th scope="row">체결단가</th>
-    <td>{{ jusik.amount_sell }} 원</td>
-  </tr>
-</tbody>
-</table>
 
 {% endblock %}
