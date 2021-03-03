@@ -13,5 +13,6 @@ class JusikForm(forms.ModelForm):
             'amount_buy' : '총 매수가격',
             'sell_price' : '매도가격',
             'amount_sell' : '총 매도가격',
-            'result' : '총 수익'
+            'result' : '총 수익',
+            'present_price' : '현재 가격',
         }

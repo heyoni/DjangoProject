@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Jusik_list
 from .forms import JusikForm
+from .parser import Parser
 
 
 def index(request):
@@ -23,6 +24,10 @@ def create(request):
         form = JusikForm(request.POST)
         if form.is_valid():
             jusik = form.save(commit=False)
+            # 주식 종목명 가져오기(구현 필요) 
+            
+            # 주식 현재가 가져오기
+            jusik.present_price = Parser.get_price('005930')
             jusik.save()
             return redirect('jusik:index')
 
