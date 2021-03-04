@@ -10,7 +10,7 @@ class Jusik_list(models.Model):
     sell_price = models.IntegerField()
     amount_sell = models.IntegerField(default=0)
     result = models.IntegerField(default=0)
-    present_price = models.IntegerField(default=0)                                                                   )
+    present_price = models.CharField(max_length=20,default=0)
 
     def __str__(self):
         return self.stock_name
