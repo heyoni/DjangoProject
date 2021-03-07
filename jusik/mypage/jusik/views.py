@@ -35,3 +35,26 @@ def create(request):
         form = JusikForm()
     context = {'form':form}
     return render(request, 'jusik/create.html', context)
+
+
+def modify(request, jusik_id):
+    # 입력정보 수정
+    jusik = get_object_or_404(Jusik_list, pk=jusik_id)
+
+    if request.method == 'POST':
+        form = JusikForm(request.POST, instance=jusik)
+        if form.is_valid():
+            jusik = form.save(commit=False)
+            jusik.save()
+            return redirect('jusik:detail', jusik_id=jusik.id)
+    else:
+        form = JusikForm(instance=jusik)
+    context = {'form':form}
+    return render(request, 'jusik/create.html',context)
+
+
+def delete(request, jusik_id):
+    # 삭제
+    jusik = get_object_or_404(Jusik_list, pk=jusik_id)
+    jusik.delete()
+    return redirect('jusik:index')

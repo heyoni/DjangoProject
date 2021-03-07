@@ -41,5 +41,21 @@
   </tr>
 </tbody>
 </table>
-
+<div class="my-3 text-center">
+  <a href="{% url 'jusik:modify' jusik.id%}" class="btn btn-sm btn-outline-secondary">수정</a>
+  <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'jusik:delete' jusik.id%}">삭제</a>
+</div>
 {% endblock %}
+
+{% block script %}
+<script type='text/javascript'>
+$(document).ready(function(){
+    $(".delete").on('click', function() {
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = $(this).data('uri');
+        }
+    });
+});
+</script>
+{% endblock %}
+
