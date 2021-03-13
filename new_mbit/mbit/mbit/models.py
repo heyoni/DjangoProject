@@ -13,5 +13,5 @@ class Question(models.Model):
 
 class Choice(models.Model):
     content = models.CharField(max_length=100)
-    question = models.ForeignKey(to='main.Question', on_delete=models.CASCADE)
-    developer = models.ForeignKey(to='main.developer', on_delete=models.CASCADE, null=True)
+    # question = models.ForeignKey(to='main.Question', on_delete=models.CASCADE)
+    # developer = models.ForeignKey(to='main.developer', on_delete=models.CASCADE, null=True)
