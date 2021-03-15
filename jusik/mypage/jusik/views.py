@@ -3,6 +3,11 @@ from .models import Jusik_list
 from .forms import JusikForm
 from .parser import get_price
 
+from django.conf import settings
+import requests
+from bs4 import BeautifulSoup
+from django.http import HttpResponse
+
 
 def index(request):
     # 주식 목록 출력
@@ -58,3 +63,21 @@ def delete(request, jusik_id):
     jusik = get_object_or_404(Jusik_list, pk=jusik_id)
     jusik.delete()
     return redirect('jusik:index')
+
+
+def find(request):
+    return render(request, 'jusik/find.html')
+
+
+def search(request):
+    apikey = settings.SECRET_KEY
+    name = '삼성전자'
+    url = f'http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?serviceKey={apikey}&secnNm={name}&numOfRows=2&pageNo=1'
+
+    req = requests.get(url)
+    soup = BeautifulSoup(req.text, 'html.parser')
+
+    items = soup.findAll('item')
+    for item in items:
+        print(item.find_all()[5].text)    
+        print(item.find_all()[7].text)
