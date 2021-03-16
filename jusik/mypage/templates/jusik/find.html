@@ -1,7 +1,9 @@
 
 {% extends 'base.html' %}
 {% block content %}
-<a href="{% url 'jusik:search' %}" class="btn btn-sm btn-outline-secondary">테스트</a>
+{% for item in itmes %}
+
+{% endfor %}
 
 <div class="container">
     <br/>
@@ -17,8 +19,9 @@
                             <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="종목을 입력해주세요">
                         </div>
                         <!--end of col-->
+
                         <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit">검색</button>
+                            <button class="btn btn-lg btn-success" type="submit" id='btn'>검색</button>
                         </div>
                         <!--end of col-->
                     </form>
@@ -26,6 +29,15 @@
             </form>
         </div>
         <!--end of col-->
+        <a href="{% url 'jusik:search' %}" class="col-12 col-md-10 col-lg-8 btn btn-sm btn-outline-secondary">테스트</a>
+        {% if arr %}
+        {% for i in arr %}
+            <div class="col-12 col-md-10 col-lg-8">{{ i }}</div>
+        {% endfor %}
+        {% else %}
+            <div class="col-12 col-md-10 col-lg-8">종목이 없습니다.</div>
+        {% endif %}
+
     </div>
 </div>
 {% endblock %}

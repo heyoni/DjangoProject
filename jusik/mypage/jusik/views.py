@@ -69,15 +69,23 @@ def find(request):
     return render(request, 'jusik/find.html')
 
 
+
 def search(request):
     apikey = settings.SECRET_KEY
-    name = '삼성전자'
-    url = f'http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?serviceKey={apikey}&secnNm={name}&numOfRows=2&pageNo=1'
+    stock = '제주'
+    url = f'http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?serviceKey={apikey}&secnNm={stock}&numOfRows=50&pageNo=1'
 
+    
     req = requests.get(url)
     soup = BeautifulSoup(req.text, 'html.parser')
 
     items = soup.findAll('item')
+    arr = []
     for item in items:
-        print(item.find_all()[5].text)    
-        print(item.find_all()[7].text)
+        name = item.find('korsecnnm').text
+        code = item.find('shotnisin').text
+        arr.append([name, code])
+        if len(arr) > 50:
+            break
+    context = {'arr':arr}
+    return render(request,'jusik/find.html',context)
