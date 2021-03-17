@@ -14,7 +14,7 @@
                     <div class="col-auto">
                         <i class="fas fa-search h4 text-body"></i>
                     </div>
-                    <form action="">
+                    <form action="{% url 'jusik:search' %}" class="col-12 col-md-10 col-lg-8 btn btn-sm btn-outline-secondary">
                         <div class="col">
                             <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="종목을 입력해주세요">
                         </div>
@@ -29,7 +29,6 @@
             </form>
         </div>
         <!--end of col-->
-        <a href="{% url 'jusik:search' %}" class="col-12 col-md-10 col-lg-8 btn btn-sm btn-outline-secondary">테스트</a>
         {% if arr %}
         {% for i in arr %}
             <div class="col-12 col-md-10 col-lg-8">{{ i }}</div>

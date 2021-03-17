@@ -70,10 +70,10 @@ def find(request):
 
 
 
-def search(request):
+def search(request, stock):
     apikey = settings.SECRET_KEY
-    stock = '제주'
-    url = f'http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?serviceKey={apikey}&secnNm={stock}&numOfRows=50&pageNo=1'
+    stock_name = stock
+    url = f'http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?serviceKey={apikey}&secnNm={stock_name}&numOfRows=50&pageNo=1'
 
     
     req = requests.get(url)
