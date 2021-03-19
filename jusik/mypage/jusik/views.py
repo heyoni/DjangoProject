@@ -72,7 +72,9 @@ def find(request):
 
 def search(request, stock):
     apikey = settings.SECRET_KEY
+
     stock_name = stock
+    print(stock_name,'입니다.')
     url = f'http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?serviceKey={apikey}&secnNm={stock_name}&numOfRows=50&pageNo=1'
 
     

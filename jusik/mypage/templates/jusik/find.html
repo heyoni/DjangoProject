@@ -14,16 +14,9 @@
                     <div class="col-auto">
                         <i class="fas fa-search h4 text-body"></i>
                     </div>
-                    <form action="{% url 'jusik:search' %}" class="col-12 col-md-10 col-lg-8 btn btn-sm btn-outline-secondary">
-                        <div class="col">
-                            <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="종목을 입력해주세요">
-                        </div>
-                        <!--end of col-->
-
-                        <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit" id='btn'>검색</button>
-                        </div>
-                        <!--end of col-->
+                    <form action="{% url 'jusik:search' %}" class="col-12 col-md-10 col-lg-8 btn btn-sm btn-outline-secondary"">
+                        <input value="{{ stock }}" id="stock_name" name="stock_name" class="form-control form-control-lg form-control-borderless" type="search" placeholder="종목을 입력해주세요">
+                        <input type="submit" value="검색">
                     </form>
                 </div>
             </form>
