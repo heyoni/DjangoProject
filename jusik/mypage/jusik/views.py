@@ -23,18 +23,17 @@ def detail(request, jusik_id):
     return render(request, 'jusik/jusik_detail.html',context)
 
 
-def create(request):
+def create(request, code):
     # 주식 등록
     if request.method == 'POST':
         form = JusikForm(request.POST)
         if form.is_valid():
             jusik = form.save(commit=False)
             # 주식 종목명 가져오기(구현 필요) 
-            
-            # 주식 현재가 가져오기
-            jusik.present_price = get_price('005930')
-            jusik.save()
-            return redirect('jusik:index')
+            if code:
+                jusik.present_price = get_price(code)
+                jusik.save()
+                return redirect('jusik:index')
 
     else:
         form = JusikForm()
@@ -70,11 +69,10 @@ def find(request):
 
 
 
-def search(request, stock):
+def search(request):
+    stock_name = request.POST.get('code_input')
     apikey = settings.SECRET_KEY
 
-    stock_name = stock
-    print(stock_name,'입니다.')
     url = f'http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1?serviceKey={apikey}&secnNm={stock_name}&numOfRows=50&pageNo=1'
 
     
