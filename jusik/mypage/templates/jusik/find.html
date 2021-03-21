@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% block content %}
 {% for item in itmes %}
@@ -9,27 +8,40 @@
     <br/>
 	<div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8">
-            <form class="card card-sm">
+            <form action="{% url 'jusik:search' %}" class="card card-sm" method="POST">
+                {% csrf_token %}
                 <div class="card-body row no-gutters align-items-center">
                     <div class="col-auto">
                         <i class="fas fa-search h4 text-body"></i>
                     </div>
-                    <form action="{% url 'jusik:search' %}" class="col-12 col-md-10 col-lg-8 btn btn-sm btn-outline-secondary"">
-                        <input value="{{ stock }}" id="stock_name" name="stock_name" class="form-control form-control-lg form-control-borderless" type="search" placeholder="종목을 입력해주세요">
-                        <input type="submit" value="검색">
+                        <!-- <input value="{{ stock }}" id="stock_name" name="stock_name" class="form-control form-control-lg form-control-borderless" type="search" placeholder="종목을 입력해주세요"> -->
+                        <div class="col">
+                            <input name='code_input' class="form-control form-control-lg form-control-borderless" type="search" placeholder="종목을 입력해주세요">
+                        </div>
+                        <div class="col-auto">
+                            <input class="btn btn-lg btn-success" type="submit" value="검색">
+                        </div>
                     </form>
+                    <div class="list-group">
+
+                    {% if arr %}
+                    {% for i, j in arr %}
+                        <a href="{% url 'jusik:create' %}" class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ i }}</h5>
+                            </div>
+                            <p class="mb-1">{{ j }}</p>
+                        </a>
+
+                    {% endfor %}
+                    {% else %}
+                        <div class="col-12 col-md-10 col-lg-8">종목이 없습니다.</div>
+                    {% endif %}
+                    </div>
                 </div>
             </form>
         </div>
         <!--end of col-->
-        {% if arr %}
-        {% for i in arr %}
-            <div class="col-12 col-md-10 col-lg-8">{{ i }}</div>
-        {% endfor %}
-        {% else %}
-            <div class="col-12 col-md-10 col-lg-8">종목이 없습니다.</div>
-        {% endif %}
-
     </div>
 </div>
 {% endblock %}
