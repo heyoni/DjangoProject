@@ -23,17 +23,17 @@ def detail(request, jusik_id):
     return render(request, 'jusik/jusik_detail.html',context)
 
 
-def create(request, code):
+def create(request):
     # 주식 등록
     if request.method == 'POST':
         form = JusikForm(request.POST)
+
         if form.is_valid():
             jusik = form.save(commit=False)
             # 주식 종목명 가져오기(구현 필요) 
-            if code:
-                jusik.present_price = get_price(code)
-                jusik.save()
-                return redirect('jusik:index')
+            jusik.present_price = get_price(code)
+            jusik.save()
+            return redirect('jusik:index')
 
     else:
         form = JusikForm()
