@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Jusik_list
 from .forms import JusikForm
-from .parser import get_price
+from .parser import get_price, get_code
 
 from django.conf import settings
 import requests
@@ -27,11 +27,12 @@ def create(request):
     # 주식 등록
     if request.method == 'POST':
         form = JusikForm(request.POST)
-
         if form.is_valid():
             jusik = form.save(commit=False)
             # 주식 종목명 가져오기(구현 필요) 
-            jusik.present_price = get_price(code)
+            cre_code = request.GET.get('cre_code')
+            print(cre_code,'여기에요')
+            jusik.present_price = get_price(cre_code)
             jusik.save()
             return redirect('jusik:index')
 
@@ -87,5 +88,5 @@ def search(request):
         arr.append([name, code])
         if len(arr) > 50:
             break
-    context = {'arr':arr}
+    context = {'arr':arr, 'code':code}
     return render(request,'jusik/find.html',context)

@@ -14,32 +14,29 @@
                     <div class="col-auto">
                         <i class="fas fa-search h4 text-body"></i>
                     </div>
-                        <!-- <input value="{{ stock }}" id="stock_name" name="stock_name" class="form-control form-control-lg form-control-borderless" type="search" placeholder="종목을 입력해주세요"> -->
-                        <div class="col">
-                            <input name='code_input' class="form-control form-control-lg form-control-borderless" type="search" placeholder="종목을 입력해주세요">
-                        </div>
-                        <div class="col-auto">
-                            <input class="btn btn-lg btn-success" type="submit" value="검색">
-                        </div>
-                    </form>
-                    <div class="list-group">
-
-                    {% if arr %}
-                    {% for name, code in arr %}
-                        <a href="{% url 'jusik:create' code=code %}" class="list-group-item list-group-item-action" aria-current="true">
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{ name }}</h5>
-                            </div>
-                            <p class="mb-1">{{ code }}</p>
-                        </a>
-
-                    {% endfor %}
-                    {% else %}
-                        <div class="col-12 col-md-10 col-lg-8">종목이 없습니다.</div>
-                    {% endif %}
+                    <div class="col">
+                        <input name='code_input' class="form-control form-control-lg form-control-borderless" type="search" placeholder="종목을 입력해주세요">
+                    </div>
+                    <div class="col-auto">
+                        <input class="btn btn-lg btn-success" type="submit" value="검색">
                     </div>
                 </div>
             </form>
+            <div class="list-group">
+            {% if arr %}
+            {% for name, code in arr %}
+                <a href="{% url 'jusik:create' %}" id='cre_code' class="list-group-item list-group-item-action" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ name }}</h5>
+                    </div>
+                    <p class="mb-1">{{ code }}</p>
+                </a>
+
+            {% endfor %}
+            {% else %}
+                <div class="col-12 col-md-10 col-lg-8">종목이 없습니다.</div>
+            {% endif %}
+            </div>
         </div>
         <!--end of col-->
     </div>
