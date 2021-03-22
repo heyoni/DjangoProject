@@ -45,6 +45,9 @@
         <div class="col-3">
             <label for="stock_name">종목명</label>
             <!-- <input type="text" name="stock_name" id="stock_name" class="form-control col-5" value="{{ form.stock_name.value|default_if_none:'' }}"> -->
+            {% if jusik.present_price %}
+            <div>{{ jusik.present_price }}</div>
+            {% endif %}
             <a href="{% url 'jusik:find' %}">종목 찾기</a>
         </div>
         <div class="col-3">
