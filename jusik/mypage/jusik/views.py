@@ -27,18 +27,20 @@ def create(request):
     # 주식 등록
     if request.method == 'POST':
         form = JusikForm(request.POST)
+        name = request.POST.get('name')
+        code = request.POST.get('code')
+
         if form.is_valid():
             jusik = form.save(commit=False)
-            # 주식 종목명 가져오기(구현 필요) 
-            cre_code = request.GET.get('cre_code')
-            print(cre_code,'여기에요')
-            jusik.present_price = get_price(cre_code)
+            jusik.present_price = get_price(code)
+            jusik.stock_name = '삼해상사'
             jusik.save()
+
             return redirect('jusik:index')
 
     else:
         form = JusikForm()
-    context = {'form':form}
+    context = {'form':form, 'name':name, 'code':code}
     return render(request, 'jusik/create.html', context)
 
 
@@ -88,5 +90,5 @@ def search(request):
         arr.append([name, code])
         if len(arr) > 50:
             break
-    context = {'arr':arr, 'code':code}
+    context = {'arr':arr}
     return render(request,'jusik/find.html',context)

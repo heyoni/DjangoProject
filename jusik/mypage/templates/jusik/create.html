@@ -49,6 +49,13 @@
             <div>{{ jusik.present_price }}</div>
             {% endif %}
             <a href="{% url 'jusik:find' %}">종목 찾기</a>
+            {% if code %}
+            <div>{{ name }}</div>
+            <input type="text" name="stock_name" id="stock_name" min="0" class="form-control" value="{{ form.stock_name.value|default_if_none:'' }}" >
+            <div>{{ code }}</div>
+            <!-- <input type="text" name="stock_name" id="stock_name" min="0" class="form-control" value="{{ form.stock_name.value|default_if_none:'' }}" > -->
+
+            {% endif %}
         </div>
         <div class="col-3">
             <label for="amount">수량</label>
