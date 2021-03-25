@@ -27,19 +27,24 @@ def create(request):
     # 주식 등록
     if request.method == 'POST':
         form = JusikForm(request.POST)
-        name = request.POST.get('name')
-        code = request.POST.get('code')
+        name = request.POST.get('stock_name')
+        code = request.POST.get('stock_code')
+        print(type(code),code)
 
         if form.is_valid():
             jusik = form.save(commit=False)
             jusik.present_price = get_price(code)
-            jusik.stock_name = '삼해상사'
+            jusik.stock_name = name
+            jusik.stock_code = code
+
             jusik.save()
 
             return redirect('jusik:index')
 
     else:
         form = JusikForm()
+        name = ''
+        code = ''
     context = {'form':form, 'name':name, 'code':code}
     return render(request, 'jusik/create.html', context)
 
