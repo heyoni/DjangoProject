@@ -10,9 +10,11 @@ def get_code(stock_code):
     return bs_obj
 
 def get_price(stock_code):
+    print('stock_code : ',stock_code, type(stock_code))
     bs_obj = get_code(stock_code)
     no_today = bs_obj.find("p", {"class": "no_today"})
     blind = no_today.find("span", {"class":"blind"})
     now_price = blind.text
+    print(now_price, type(now_price))
     return now_price
 

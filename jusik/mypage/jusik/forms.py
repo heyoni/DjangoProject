@@ -8,6 +8,7 @@ class JusikForm(forms.ModelForm):
         labels = {
             'date' : '날짜',
             'stock_name' : '종목명',
+            'stock_code' : '종목명',
             'amount' : '수량',
             'buy_price' : '매수가격',
             'amount_buy' : '총 매수가격',
