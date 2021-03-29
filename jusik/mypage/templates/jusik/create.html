@@ -69,7 +69,6 @@
         </div>
 
         <div class="col-3">
-            <label for="amount_buy">총 매수가격</label>
             <input type="hidden" name="amount_buy" id="amount_buy" min="0" class="form-control" value="{{ form.amount_buy.value|default_if_none:'' }}" onchange="call3()">
         </div>
 
@@ -79,7 +78,6 @@
         </div>
 
         <div class="col-3">
-            <label for="amount_sell">총 매도가격</label>
             <input type="hidden" name="amount_sell" id="amount_sell" min="0" class="form-control" value="{{ form.amount_sell.value|default_if_none:'' }}" onchange="call2()" onchange="call3()">
         </div>
 
