@@ -5,8 +5,10 @@
     {{ jusik.stock_name }}
 </h1>
 <!-- 여기다가는 표 넣기(나중에) -->
-
-
+{% load static %}
+<div class="text-center">
+  <img src="{% static 'plot.png' %}" alt="그래프" style="width: 900px;">
+</div>
 <table class="table table-striped text-center" style="width:40%; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>

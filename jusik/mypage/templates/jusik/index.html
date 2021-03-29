@@ -23,7 +23,7 @@
         {% for jusik in jusik_list %}
         <tr class='text-center'>
             <td>{{ jusik.date }} </td>
-            <td><a href="{% url 'jusik:detail' jusik.id %}">{{ jusik.stock_name }}</a></td>
+            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><a href="{% url 'jusik:detail' jusik.id %}">{{ jusik.stock_name }}</a></td>
             <td>{{ jusik.amount }}</td> 
             <td>{{ jusik.buy_price }}</td>
             <td>{{ jusik.amount_buy }}</td>
@@ -34,8 +34,8 @@
         </tr>
         {% endfor %}
         {% else %}
-        <tr>
-            <td colspan="3">입력된 종목이 없습니다.</td>
+        <tr class='text-center'>
+            <td colspan="12" >입력된 종목이 없습니다.</td>
         </tr>
         {% endif %}
         </tbody>

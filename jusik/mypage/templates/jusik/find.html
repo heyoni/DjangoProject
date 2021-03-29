@@ -23,7 +23,9 @@
                 </div>
             </form>
             <div class="list-group">
-            {% if arr %}
+            {% if not arr %}
+            <div class="col-12 col-md-10 col-lg-8">종목이 없습니다.</div>
+            {% else %}
             {% for name, code in arr %}
             <form action="{% url 'jusik:create' %}" method="POST" >
                 {% csrf_token %}
@@ -36,10 +38,7 @@
 
                 <input class="mb-1" type="submit" value="선택하기"/>
             </form>
-
             {% endfor %}
-            {% else %}
-                <div class="col-12 col-md-10 col-lg-8">종목이 없습니다.</div>
             {% endif %}
             </div>
         </div>

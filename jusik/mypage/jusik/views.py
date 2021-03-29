@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Jusik_list
 from .forms import JusikForm
 from .parser import get_price, get_code
+from .graph import get_graph
 
 from django.conf import settings
 import requests
@@ -11,7 +12,7 @@ from django.http import HttpResponse
 
 def index(request):
     # 주식 목록 출력
-    jusik_list = Jusik_list.objects.order_by('stock_name')
+    jusik_list = Jusik_list.objects.order_by('-date')
     context = {'jusik_list':jusik_list}
     return render(request, 'jusik/index.html', context)
 
@@ -19,6 +20,7 @@ def index(request):
 def detail(request, jusik_id):
     # 주식 내용 출력(구체적)
     jusik = get_object_or_404(Jusik_list, pk=jusik_id)
+    get_graph(jusik.stock_code)
     context = {'jusik':jusik}
     return render(request, 'jusik/jusik_detail.html',context)
 
@@ -29,7 +31,6 @@ def create(request):
         form = JusikForm(request.POST)
         name = request.POST.get('stock_name')
         code = request.POST.get('stock_code')
-        print(type(code),code)
 
         if form.is_valid():
             jusik = form.save(commit=False)
