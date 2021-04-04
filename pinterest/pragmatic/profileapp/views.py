@@ -26,6 +26,7 @@ class ProfileCreateView(CreateView):
         # self.object -> model에서 profile의 user를 의미함
         return reverse('accountapp:detail', kwargs={'pk':self.object.user.pk})
 
+
 @method_decorator(profile_ownership_required, 'get')
 @method_decorator(profile_ownership_required, 'post')
 class ProfileUpdateView(UpdateView):
