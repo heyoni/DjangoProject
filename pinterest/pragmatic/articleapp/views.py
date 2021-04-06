@@ -3,12 +3,12 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse, reverse_lazy
 
-
 # Create your views here.
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView, FormMixin
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
 from articleapp.decorators import article_ownership_required
+from accountapp.forms import CommentCreationForm
 
 
 
@@ -51,11 +51,11 @@ class ArticleUpdateView(UpdateView):
 
 @method_decorator(article_ownership_required, 'get')
 @method_decorator(article_ownership_required, 'post')
-class ArticleDeleteView(DeleteView):
+class ArticleDeleteView(DeleteView, FormMixin):
     model = Article
+    form_class = CommentCreationForm
     context_object_name = 'target_article'
     template_name = 'articleapp/delete.html'
-    success_url = reverse_lazy('articleapp:list')
 
 
 class ArticleListView(ListView):

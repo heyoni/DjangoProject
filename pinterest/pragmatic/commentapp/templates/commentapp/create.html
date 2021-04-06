@@ -1,4 +1,4 @@
-{% load bootstrap4 %}
+8{% load bootstrap4 %}
 
 {% block content %}
 
@@ -10,7 +10,13 @@
         {% csrf_token %}
         {% bootstrap_form form %}
 
+        {% if user.is_authenticated %}
         <input type="submit" value="create" class="btn btn-dark rounded-pill col-6 mt-3">
+        {% else %}
+        <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="btn btn-dark rounded-pill col-6 mt-3">
+            login
+        </a>
+        {% endif  %}
         <input type="hidden" name="article_pk" value="{{ article.pk }}">
     </form>
 </div>
