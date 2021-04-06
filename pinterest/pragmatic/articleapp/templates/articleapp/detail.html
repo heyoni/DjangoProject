@@ -6,9 +6,9 @@
         <h1>
             {{ target_article.title }}
         </h1>
-        <h3>
+        <h5>
             {{ target_article.writer.nickname }}
-        </h3>
+        </h5>
         <hr>
         
         <img src="{{ target_article.image.url }}" alt="" style="width:100%; border-radius: 1rem; margin: 2rem 0;">
@@ -25,6 +25,8 @@
         </a>
         {% endif %}
         <hr>
+
+        {% include 'commentapp/create.html' with article=target_article %}
     </div>
 </div>
 
