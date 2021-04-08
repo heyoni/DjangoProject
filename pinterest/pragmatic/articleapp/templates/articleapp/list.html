@@ -2,22 +2,22 @@
 {% load static %}
 
 {% block content %}
-<style>
-    .container div {
-    width: 250px;
-    background-color: antiquewhite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
-    }
-    .container img{
-        width: 100%;
-        border-radius: 1rem;
+  <style>
+      .container div {
+      width: 250px;
+      background-color: antiquewhite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1rem;
+      }
+      .container img{
+          width: 100%;
+          border-radius: 1rem;
 
-    }
+      }
 
-</style>
+  </style>
 
 
 
@@ -26,14 +26,14 @@
     {% for article in article_list %}
     <a href="{% url 'articleapp:detail' pk=article.pk %}">
       {% include 'snippets/card.html' with article=article %}
-      <p style="color: red;">{{ article.pk }}</p>
+      <!-- <p style="color: red;">{{ article.pk }}</p> -->
     </a>
     {% endfor %}
   </div>
   <script src="{% static 'js/magicgrid.js' %}"></script>
 
   {% else %}
-  <div class="text-center mb-3 mt-4">
+  <div class="text-center">
     <h1>No aritcles!!</h1>
   </div>
   {% endif %}
