@@ -11,7 +11,7 @@ from articleapp.models import Article
 from articleapp.decorators import article_ownership_required
 from commentapp.forms import CommentCreationForm
 
-
+from django.core.paginator import Paginator
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -64,4 +64,5 @@ class ArticleListView(ListView):
     model = Article
     context_object_name = 'article_list'
     template_name = 'articleapp/list.html'
-    paginate_by = 20
+    paginate_by = 9
+    queryset = Article.objects.all()
