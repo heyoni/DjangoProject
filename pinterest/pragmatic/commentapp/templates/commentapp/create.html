@@ -1,4 +1,4 @@
-8{% load bootstrap4 %}
+{% load bootstrap4 %}
 
 {% block content %}
 
@@ -16,7 +16,7 @@
         <a href="{% url 'accountapp:login' %}?next={{ request.path  }}" class="btn btn-dark rounded-pill col-6 mt-3">
             login
         </a>
-        {% endif  %}
+        {% endif %}
         <input type="hidden" name="article_pk" value="{{ article.pk }}">
     </form>
 </div>
