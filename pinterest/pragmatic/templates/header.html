@@ -10,6 +10,9 @@
         <a href="{% url 'projectapp:list' %}" class="pragmatic_header_nav">
             <span>Projects</span>
         </a>
+        <a href="{% url 'subscribeapp:list' %}" class="pragmatic_header_nav">
+            <span>Subscription</span>
+        </a>
         {% if not user.is_authenticated %}
             <!-- ?next 이후 : 현재페이지를 next인자로 넘겨주면서 원래 있었던 자리로 돌아오게 함 -->
             <a href="{% url 'accountapp:login' %}" class="pragmatic_header_nav">

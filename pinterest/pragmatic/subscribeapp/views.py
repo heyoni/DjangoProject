@@ -4,6 +4,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from projectapp.models import Project
 from subscribeapp.models import Subscription
+from articleapp.models import Article
+from django.views.generic import CreateView, DetailView, ListView
 
 from django.views.generic import RedirectView
 from django.urls import reverse
@@ -33,3 +35,17 @@ class SubscriptionView(RedirectView):
         return super(SubscriptionView, self).get(request, *args, **kwargs)
 
 
+# field Lookup을 이용하여 구독페이지 만들기
+@method_decorator(login_required, 'get')
+class SubscriptionListView(ListView):
+    model = Article
+    context_object_name = 'article_list'
+    template_name = 'subscribeapp/list.html'
+    pagenate_by = 5
+
+    def get_queryset(self):
+        # 구독한 모든 프로젝트를 리스트화 함
+        projects = Subscription.objects.filter(user=self.request.user).values_list('project')
+        # projects를 기반으로 하여 field lookup으로 구현
+        article_list = Article.objects.filter(project__in=projects)
+        return article_list 
