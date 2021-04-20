@@ -1,0 +1,19 @@
+<!-- {% extends 'base.html' %} -->
+
+{% block content %}
+
+{% if rutine_list %}
+    <div class="container">
+        {% for rutine in rutine_list %}
+        <a href=""> 
+            있슈
+        </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="text-center">
+        <h1>No Rutines!!</h1>
+    </div>
+{% endif %}
+
+<!-- {% endblock %} -->
