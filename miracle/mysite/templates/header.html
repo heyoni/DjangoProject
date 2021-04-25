@@ -1,0 +1,33 @@
+<!-- header 부분 -->
+<div class="miracle_header">
+    <div>
+        <h1 class="miracle_logo">☀️ Miracle Morning ☀️</h1>
+    </div>
+    <div class="miracle_header_navbar">
+        <a href="#" class="miracle_header_nav">
+            <span>Articles</span>
+        </a>
+        <a href="#" class="miracle_header_nav">
+            <span>Projects</span>
+        </a>
+        <a href="#" class="miracle_header_nav">
+            <span>Subscription</span>
+        </a>
+        {% if not user.is_authenticated %}
+            <a href="#" class="miracle_header_nav">
+                <span>login</span>
+            </a>
+            <a href="#" class="miracle_header_nav">
+                <span>sign up</span>
+            </a>
+        {% else %}
+            <a href="#" class="miracle_header_nav">
+                <span>MyPage</span>
+            </a>
+            <a href="#" class="miracle_header_nav"> 
+                <span>logout</span>
+            </a>
+        {% endif %}
+
+    </div>
+</div>

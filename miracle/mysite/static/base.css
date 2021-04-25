@@ -1,0 +1,41 @@
+.miracle_logo {
+    font-family: 'Lora', serif;
+}
+
+.miracle_footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.miracle_footer_button{
+    font-size: 0.9rem;
+}
+
+.miracle_header {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+@media screen and (max-width:500px){
+    html {
+        font-size: 13px;
+    }
+}
+a {
+    color:black;
+    text-decoration: none;
+}
+
+a:hover {
+    color:black;
+    text-decoration: none;
+}
+
+.miracle_header_nav{
+    margin: 0 0.5rem;
+}
+
+.miracle_header_navbar{
+    margin: 1rem 0;
+}
+
