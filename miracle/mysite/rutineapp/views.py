@@ -22,7 +22,7 @@ class RutineListView(ListView):
 class RutineCreateiew(CreateView):
     model = Rutine
     form_class = RutineCreationForm
-    template_name = 'create.html'
+    template_name = 'rutineapp/create.html'
     
     # def form_valid(self, form):
     #     temp_article = form.save(commit=False)
