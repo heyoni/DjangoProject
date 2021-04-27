@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from rutineapp.views import RutineListView
 
 urlpatterns = [
+    path('', RutineListView.as_view(), name='home'),
     path('admin/', admin.site.urls),
-    path('rutine/', include('rutineapp.urls')),
+    path('rutines/', include('rutineapp.urls')),
+    path('accounts/', include('accountapp.urls')),
+    path('profiles/', include('profileapp.urls')),
 ]

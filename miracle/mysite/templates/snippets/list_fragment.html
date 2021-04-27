@@ -1,0 +1,53 @@
+{% load static %}
+
+  <style>
+    .container {
+      padding:0;
+      margin:0, auto;
+    }
+    .container a {
+      width: 45%;
+      max-width: 250px;
+    }
+
+    .container div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+    }
+    .container img{
+        width: 100%;
+        border-radius: 1rem;
+
+    }
+
+  </style>
+
+
+
+  {% if rutine_list %}
+  <div class="container">
+    {% for rutine in rutine_list %}
+    <a href="{% url 'rutineapp:detail' pk=article.pk %}">
+      {% include 'snippets/card.html' with rutine=rutine %}
+      <!-- <p style="color: red;">{{ article.pk }}</p> -->
+    </a>
+    {% endfor %}
+  </div>
+  <script src="{% static 'js/magicgrid.js' %}"></script>
+
+  {% else %}
+  <div class="text-center">
+    <h4>No aritcles!!</h4>
+  </div>
+  {% endif %}
+
+  {% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+  <div style="text-align: center;">
+    <a href="{% url 'rutineapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2">
+      Create Article
+    </a>
+  </div>
+
