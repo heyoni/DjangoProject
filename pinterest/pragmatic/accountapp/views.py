@@ -14,9 +14,6 @@ from accountapp.forms import AccountUpdateForm
 
 has_ownership = [account_ownership_required, login_required]
 
-
-
-
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
