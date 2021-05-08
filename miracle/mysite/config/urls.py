@@ -23,5 +23,6 @@ urlpatterns = [
     path('rutines/', include('rutineapp.urls')),
     path('accounts/', include('accountapp.urls')),
     path('profiles/', include('profileapp.urls')),
+    path('calendar/', include('calendarapp.urls')),
 
 ]
