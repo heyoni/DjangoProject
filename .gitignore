@@ -157,3 +157,5 @@ dmypy.json
 
 secrets.json
 settings.py
+
+bower_components/
