@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if rutine_list %}
+    <div class="container">
+        {% for rutine in rutine_list %}
+        <a href=""> 
+            있슈
+        </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="text-center">
+        <h1>No Rutines!!</h1>
+    </div>
+    <div style="text-align: center;">
+        <a href="{% url 'rutineapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2">
+          Create Rutines
+        </a>
+      </div>
+{% endif %}
+
+{% endblock %}
