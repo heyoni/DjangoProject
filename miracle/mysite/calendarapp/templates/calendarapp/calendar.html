@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div id='cal'>
 
-{% autoescape on %}     
-    {{ s }}
-{% endautoescape %}
+</div>
+
+<script>
+    var $log = $( "#cal" ),
+      str = {{s}},
+      html = $.parseHTML( str ),
+      nodeNames = [];
+     
+    // Append the parsed HTML
+    $log.append( html );
+     
+</script>
+
+
 
 {% endblock %}

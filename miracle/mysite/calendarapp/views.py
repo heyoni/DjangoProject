@@ -8,9 +8,7 @@ import calendar
 def CalendarView(request):
     htmlCalendar = calendar.HTMLCalendar(calendar.SUNDAY)
     s = htmlCalendar.formatmonth(2021,5)
-
-
-
+    s = str(s)
     return render(request, 'calendarapp/calendar.html', {'s':s})
 
 
