@@ -1,21 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div id='cal'>
-
-</div>
-
-<script>
-    var $log = $( "#cal" ),
-      str = {{s}},
-      html = $.parseHTML( str ),
-      nodeNames = [];
-     
-    // Append the parsed HTML
-    $log.append( html );
-     
-</script>
-
+{{ month }}<br>
+{{ month_number }}
 
 
 {% endblock %}
