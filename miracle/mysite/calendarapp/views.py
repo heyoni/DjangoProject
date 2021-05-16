@@ -7,11 +7,14 @@ from calendar import HTMLCalendar
 
 # Create your views here.
 def CalendarView(request, year, month):
-    month_number = list(calendar.month_name).index(month)
     month = month.capitalize()
+    month_number = list(calendar.month_name).index(month)
+    month_number = int(month_number)
 
+    cal = HTMLCalendar().formatmonth(year, month_number)
     return render(request, 'calendarapp/calendar.html',{
                                             'year': year,
                                             'month': month,
                                             'month_number':month_number,
+                                            'cal' : cal,
                                             })
