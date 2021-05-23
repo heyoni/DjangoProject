@@ -1,20 +1,56 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404, reverse
+import datetime
+from .models import Event
 import calendar
-from calendar import HTMLCalendar
+from .calendar import Calendar
+from django.utils.safestring import mark_safe
+from .forms import EventForm
 
+def calendar_view(request):
+    today = get_date(request.GET.get('month'))
 
-# 해야할것: class로 만들 수 있으면 만들고, s를 html단에 넘겨주기
+    prev_month_var = prev_month(today)
+    next_month_var = next_month(today)
 
-# Create your views here.
-def CalendarView(request, year, month):
-    month = month.capitalize()
-    month_number = list(calendar.month_name).index(month)
-    month_number = int(month_number)
+    cal = Calendar(today.year, today.month)
+    html_cal = cal.formatmonth(withyear=True)
+    result_cal = mark_safe(html_cal)
 
-    cal = HTMLCalendar().formatmonth(year, month_number)
-    return render(request, 'calendarapp/calendar.html',{
-                'year': year,
-                'month': month,
-                'month_number':month_number,
-                'cal' : cal,
-                })
+    context = {'calendar' : result_cal, 'prev_month' : prev_month_var, 'next_month' : next_month_var}
+
+    return render(request, 'calendarapp/calendar.html', context)
+
+#현재 달력을 보고 있는 시점의 시간을 반환
+def get_date(req_day):
+    if req_day:
+        year, month = (int(x) for x in req_day.split('-'))
+        return datetime.date(year, month, day=1)
+    return datetime.datetime.today()
+
+#현재 달력의 이전 달 URL 반환
+def prev_month(day):
+    first = day.replace(day=1)
+    prev_month = first - datetime.timedelta(days=1)
+    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+    return month
+
+#현재 달력의 다음 달 URL 반환
+def next_month(day):
+    days_in_month = calendar.monthrange(day.year, day.month)[1]
+    last = day.replace(day=days_in_month)
+    next_month = last + datetime.timedelta(days=1)
+    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    return month
+
+#새로운 Event의 등록 혹은 수정
+def event(request, event_id=None):
+    if event_id:
+        instance = get_object_or_404(Event, pk=event_id)
+    else:
+        instance = Event()
+    
+    form = EventForm(request.POST or None, instance=instance)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('calendar')
+    return render(request, 'calendarapp/input.html', {'form': form})

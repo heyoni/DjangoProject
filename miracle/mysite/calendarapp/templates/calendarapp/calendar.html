@@ -1,10 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% load bootstrap_calendar %}
-{% bootstrap_controls 'optional-css-classes' %}
-{% bootstrap_calendar 'optional-css-classes' %}
 
-{% bootstrap_calendar_js language="lang-code" %}
-{% bootstrap_calendar_init language="lang-code" %}
+    <div class="container">
+        <br>
+        <h1>나만의 달력</h1>
+        <div class="outer">
+            <a class="btn btn-info left" href="{% url 'calendarapp:calendar' %}?{{ prev_month }}"><span>이전 달</span> </a>
+            <a class="btn btn-info right" href="{% url 'calendarapp:calendar' %}?{{ next_month }}"><span>다음 달</span> </a>
+        </div>
+        {{ calendar }}
+    </div>
+
+
+
 {% endblock %}
+
+
