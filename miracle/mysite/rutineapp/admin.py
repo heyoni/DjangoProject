@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Rutine
 
-# Register your models here.
+class RutineAdmin(admin.ModelAdmin):
+    search_fields = ['title']
+
+admin.site.register(Rutine, RutineAdmin)
