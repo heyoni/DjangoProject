@@ -4,6 +4,8 @@ from . import views
 app_name = 'calendarapp'
 
 urlpatterns = [
-    # path('', views.CalendarView, name='calendar'),
-    path('<int:year>/<str:month>',views.CalendarView,name='calendar'),
+    path('', views.calendar_view, name='calendar'),
+    path('input/', views.event, name='input'),
+    path('edit/<int:event_id>', views.event, name="edit"),
 ]
+

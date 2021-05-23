@@ -1,17 +1,20 @@
-
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
- 
 from django.db import models
- 
+from django.urls import reverse
+
 class Event(models.Model):
-    day = models.DateField(u'Day of the event', help_text=u'Day of the event')
-    start_time = models.TimeField(u'Starting time', help_text=u'Starting time')
-    end_time = models.TimeField(u'Final time', help_text=u'Final time')
-    notes = models.TextField(u'Textual Notes', help_text=u'Textual Notes', blank=True, null=True)
- 
+    start_time = models.DateTimeField("시작시간")
+    end_time = models.DateTimeField("마감시간")
+    title = models.CharField("이벤트 이름", max_length=50)
+    description = models.TextField("상세")
+
     class Meta:
-        verbose_name = u'Scheduling'
-        verbose_name_plural = u'Scheduling'
+        verbose_name = "이벤트 데이터"
+        verbose_name_plural = "이벤트 데이터"
 
+    def __str__(self):
+        return self.title
 
+    @property
+    def get_html_url(self):
+        url = reverse('calendarapp:edit', args=(self.id,))
+        return f'<a href="{url}"> {self.title} </a>'
