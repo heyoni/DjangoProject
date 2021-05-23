@@ -13,8 +13,8 @@ def CalendarView(request, year, month):
 
     cal = HTMLCalendar().formatmonth(year, month_number)
     return render(request, 'calendarapp/calendar.html',{
-                                            'year': year,
-                                            'month': month,
-                                            'month_number':month_number,
-                                            'cal' : cal,
-                                            })
+                'year': year,
+                'month': month,
+                'month_number':month_number,
+                'cal' : cal,
+                })

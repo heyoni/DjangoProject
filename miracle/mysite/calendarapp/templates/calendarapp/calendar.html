@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{{ month }}<br>
-{{ month_number }}<br>
-{{ cal|safe }}
+{% load bootstrap_calendar %}
+{% bootstrap_controls 'optional-css-classes' %}
+{% bootstrap_calendar 'optional-css-classes' %}
 
-
+{% bootstrap_calendar_js language="lang-code" %}
+{% bootstrap_calendar_init language="lang-code" %}
 {% endblock %}
