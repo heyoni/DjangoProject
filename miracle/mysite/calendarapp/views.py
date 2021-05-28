@@ -6,7 +6,7 @@ from .calendar import Calendar
 from django.utils.safestring import mark_safe
 from .forms import EventForm
 
-def calendar_view(request):
+def calendarView(request):
     today = get_date(request.GET.get('month'))
 
     prev_month_var = prev_month(today)
@@ -54,3 +54,13 @@ def event(request, event_id=None):
         form.save()
         return redirect('calendar')
     return render(request, 'calendarapp/input.html', {'form': form})
+
+# def calendarView(request, event_id):
+#     calendar = get_object_or_404(Event, pk=event_id)
+
+#     if request.method == 'POST':
+#         form = EventForm(request.POST, calendar=calendar)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('calendar')
+    

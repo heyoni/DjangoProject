@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-{% if rutine_list %}
-    <div class="container">
-        {% for rutine in rutine_list %}
-        <a href=""> 
-            {% include 'snippets/card.html' with rutine=rutine %}
-        </a>
-        {% endfor %}
-    </div>
-{% else %}
-    <div class="text-center">
-        <h1>No Rutines!!</h1>
-    </div>
+    {% if rutine_list %}
+        <div class="container">
+            {% for rutine in rutine_list %}
+            <a href=""> 
+                {% include 'snippets/card.html' with rutine=rutine %}
+            </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center">
+            <h1>No Rutines!!</h1>
+        </div>
 
-{% endif %}
+    {% endif %}
 
     <div style="text-align: center;">
         <a href="{% url 'rutineapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2">
