@@ -99,10 +99,11 @@ h1 {
 }
 
 .calendar tr {
-	color:red;
 	font-weight: 700;
 	text-transform: uppercase;
 }
+
+
 
 .calendar td {
     width: 1rem;
@@ -158,3 +159,4 @@ a:hover { color: red; text-decoration: none;}
     padding: 5px;
     width: 100%;
 }
+

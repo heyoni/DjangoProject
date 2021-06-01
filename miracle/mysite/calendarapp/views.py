@@ -14,7 +14,7 @@ def calendarView(request):
 
     cal = Calendar(today.year, today.month)
     html_cal = cal.formatmonth(withyear=True)
-    result_cal = mark_safe(html_cal)
+    result_cal = mark_safe(html_cal+'</table>')
 
     context = {'calendar' : result_cal, 'prev_month' : prev_month_var, 'next_month' : next_month_var}
 
