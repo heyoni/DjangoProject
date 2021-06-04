@@ -54,10 +54,7 @@ a:hover {
     text-align : center;
 }
 
-.month {
-    font-size: 1rem;
-}
-  
+
 .date {
     font-size: 1rem;
 }
@@ -158,5 +155,11 @@ a:hover { color: red; text-decoration: none;}
     background: none;
     padding: 5px;
     width: 100%;
+}
+
+
+
+.month_arrow {
+    text-align: center;
 }
 
