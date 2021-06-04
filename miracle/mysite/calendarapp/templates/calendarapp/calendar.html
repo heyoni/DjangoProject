@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-
     <div class="container">
         <br>
-
         <div class="outer">
             
-            <a class="btn btn-success left rounded-pill " href="{% url 'calendarapp:calendar' %}?{{ prev_month }}"><span>이전 달</span> </a>
-            <a class="btn btn-success rounded-pill right" href="{% url 'calendarapp:calendar' %}?{{ next_month }}"><span>다음 달</span> </a>
-
+            <a class="btn left btn-light " href='{% url "calendarapp:calendar" %}?{{ prev_month }}'><span>이전 달</span> </a>
+            <a class="btn btn-success center" href="{% url 'calendarapp:input' %}">안녕</a>
+            <a class="btn btn-light right" href="{% url 'calendarapp:calendar' %}?{{ next_month }}"><span>다음 달</span> </a>
         </div>
 
+
+
     </div>
-    {{ calendar }}
+    <div>
+        {{ calendar }}
+    </div>
+    <div class="container">
+
+    </div>
 
 {% endblock %}
 

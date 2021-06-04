@@ -4,14 +4,14 @@
         <h1 class="miracle_logo">☀️ Miracle Morning ☀️</h1>
     </div>
     <div class="miracle_header_navbar">
+        <a href="{% url 'calendarapp:calendar' %}" class="miracle_header_nav">
+            <span>Calendar</span>
+        </a>
         <a href="{% url 'rutineapp:list' %}" class="miracle_header_nav">
             <span>Rutines</span>
         </a>
         <a href="#" class="miracle_header_nav">
-            <span>Projects</span>
-        </a>
-        <a href="#" class="miracle_header_nav">
-            <span>Subscription</span>
+            <span>Info</span>
         </a>
         {% if not user.is_authenticated %}
             <a href="{% url 'accountapp:login' %}" class="miracle_header_nav">
