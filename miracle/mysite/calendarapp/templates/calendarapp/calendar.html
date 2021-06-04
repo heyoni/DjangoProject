@@ -5,9 +5,9 @@
         <br>
         <div class="outer">
             
-            <a class="btn left btn-light " href='{% url "calendarapp:calendar" %}?{{ prev_month }}'><span>이전 달</span> </a>
-            <a class="btn btn-success center" href="{% url 'calendarapp:input' %}">안녕</a>
-            <a class="btn btn-light right" href="{% url 'calendarapp:calendar' %}?{{ next_month }}"><span>다음 달</span> </a>
+            <a class="btn left btn-outline-dark " href='{% url "calendarapp:calendar" %}?{{ prev_month }}'><span>이전 달</span> </a>
+            <a class="btn btn-outline-success col-5 position-absolute top-30 start-50 translate-middle-x" href="{% url 'calendarapp:input' %}">추가하기</a>
+            <a class="btn btn-outline-dark right" href="{% url 'calendarapp:calendar' %}?{{ next_month }}"><span>다음 달</span> </a>
         </div>
 
 
