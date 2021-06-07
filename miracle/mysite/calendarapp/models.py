@@ -1,11 +1,12 @@
+from django.db.models.deletion import CASCADE
+from rutineapp.models import Rutine
 from django.db import models
 from django.urls import reverse
 
 class Event(models.Model):
     start_time = models.DateTimeField("시작시간")
-    end_time = models.DateTimeField("마감시간")
-    title = models.CharField("이벤트 이름", max_length=50)
-    description = models.TextField("상세")
+    title = models.ForeignKey(Rutine, on_delete=models.CASCADE, related_name='title1')
+    content = models.ForeignKey(Rutine, on_delete=models.CASCADE, related_name='content1')
 
     class Meta:
         verbose_name = "이벤트 데이터"

@@ -5,6 +5,8 @@ import calendar
 from .calendar import Calendar
 from django.utils.safestring import mark_safe
 from .forms import EventForm
+from django.urls import reverse, reverse_lazy
+
 
 def calendarView(request):
     today = get_date(request.GET.get('month'))
@@ -52,7 +54,7 @@ def event(request, event_id=None):
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
         form.save()
-        return redirect('calendar')
+        return redirect('/calendar/')
     return render(request, 'calendarapp/input.html', {'form': form})
 
 # def calendarView(request, event_id):
