@@ -163,3 +163,6 @@ a:hover { color: red; text-decoration: none;}
     text-align: center;
 }
 
+.cal_color {
+    float:left;    
+}
