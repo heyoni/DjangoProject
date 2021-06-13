@@ -7,4 +7,4 @@ class RutineCreationForm(ModelForm):
 
     class Meta:
         model = Rutine
-        fields = ['title']
+        fields = ['title', 'color']
