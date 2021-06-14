@@ -130,9 +130,9 @@ span {
     color : black;
 }
 
-a:link { color: blue; text-decoration: none;}
-a:visited { color: blue; text-decoration: none;}
-a:hover { color: red; text-decoration: none;}
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: #848484; text-decoration: none;}
 
 .left {
     float : left;
@@ -161,9 +161,4 @@ a:hover { color: red; text-decoration: none;}
 
 .month_arrow {
     text-align: center;
-}
-
-
-.mon {
-    text-align: center;   
 }
