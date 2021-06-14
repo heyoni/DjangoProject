@@ -29,4 +29,4 @@ class Event(models.Model):
     def get_html_url(self):
         color = 'blue'
         url = reverse('calendarapp:edit', args=(self.id,))
-        return f'<a href="{url}" class="cal_color" style="background-color:{self.color};color:{self.color};float:left;margin:3px 3px; border-radius: 50%;width:12px;height:12px">  </a>'
+        return f'<a href="{url}" class="cal_color {self.color}" style="background-color:{self.color};color:{self.color};float:left;margin:3px 3px; border-radius: 50%;width:12px;height:12px">  </a>'
