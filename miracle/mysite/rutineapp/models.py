@@ -7,4 +7,4 @@ class Rutine(models.Model):
 
 
     def __str__(self):
-        return f'{self.title}, {self.color}'
+        return f'{self.title},{self.color}'

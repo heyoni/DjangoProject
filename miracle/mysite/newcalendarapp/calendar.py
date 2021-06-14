@@ -31,15 +31,30 @@ class Calendar(HTMLCalendar):
 		events_per_day = events.filter(start_time__day=day)
 		d = ''
 		for event in events_per_day:
-			d += f'<li> {event.get_html_url} </li>'
+			if str(event).split(',')[1] == 'red':
+				d += f'<li style="display:flex;order:1;"> {event.get_html_url} </li>'
+			elif str(event).split(',')[1] == 'orange':
+				d += f'<li style="display:flex;order:2;"> {event.get_html_url} </li>'
+			elif str(event).split(',')[1] == 'yellow':
+				d += f'<li style="display:flex;order:3;"> {event.get_html_url} </li>'
+			elif str(event).split(',')[1] == 'green':
+				d += f'<li style="display:flex;order:4;"> {event.get_html_url} </li>'
+			elif str(event).split(',')[1] == 'blue':
+				d += f'<li style="display:flex;order:5;"> {event.get_html_url} </li>'
+			elif str(event).split(',')[1] == 'navy':
+				d += f'<li style="display:flex;order:6;"> {event.get_html_url} </li>'
+			elif str(event).split(',')[1] == 'purple':
+				d += f'<li style="display:flex;order:7;"> {event.get_html_url} </li>'
+			elif str(event).split(',')[1] == 'black':
+				d += f'<li style="display:flex;order:8;"> {event.get_html_url} </li>'
 		if day != 0:
 			# 토, 일요일 색 바꿔주기
 			if self.count % 7 == 6:
-				return f"<td class='container col-1'><span style='color:blue'>{day}</span><ul class='event_line'> {d} </ul></td>"
+				return f"<td class='container col-1'><span style='color:blue'>{day}</span><ul class='event_line' style='display:flex'> {d} </ul></td>"
 			elif self.count % 7 == 0:
-				return f"<td class='container col-1'><span style='color:red'>{day}</span><ul class='event_line'> {d} </ul></td>"
+				return f"<td class='container col-1'><span style='color:red'>{day}</span><ul class='event_line' style='display:flex'> {d} </ul></td>"
 			else:
-				return f"<td class='container col-1'><span>{day}</span><ul class='event_line'> {d} </ul></td>"
+				return f"<td class='container col-1'><span>{day}</span><ul class='event_line' style='display:flex'> {d} </ul></td>"
 
 		return '<td></td>'
 
