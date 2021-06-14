@@ -39,15 +39,15 @@
 
   {% else %}
   <div class="text-center">
-    <h4>No aritcles!!</h4>
+    <h4>아무것도 없네요😢</h4>
   </div>
   {% endif %}
 
   {% include 'snippets/pagination.html' with page_obj=page_obj %}
 
   <div style="text-align: center;">
-    <a href="{% url 'rutineapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2">
-      Create Article
+    <a href="{% url 'rutineapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2" style="color:white">
+      만들기(create article)
     </a>
   </div>
 
