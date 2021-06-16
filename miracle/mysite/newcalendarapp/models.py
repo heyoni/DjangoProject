@@ -1,5 +1,5 @@
 from django.db.models.deletion import CASCADE
-from rutineapp.models import Rutine
+from routineapp.models import Routine
 from django.db import models
 from django.urls import reverse
 from colorfield.fields import ColorField
@@ -19,7 +19,7 @@ class Event(models.Model):
 
 
     start_time = models.DateField("날짜")
-    title = models.ForeignKey(Rutine, on_delete=models.CASCADE, related_name='title1')
+    title = models.ForeignKey(Routine, on_delete=models.CASCADE, related_name='title1')
     color = ColorField(choices=COLOR_CHOICES)
 
 
