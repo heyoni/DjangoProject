@@ -50,11 +50,11 @@ class Calendar(HTMLCalendar):
 		if day != 0:
 			# 토, 일요일 색 바꿔주기
 			if self.count % 7 == 6:
-				return f"<td class='container col-1'><span style='color:blue'>{day}</span><ul class='event_line' style='display:flex'> {d} </ul></td>"
+				return f"<td class='container col-1'><span style='color:blue'>{day}</span><ul class='event_line' style='display:flex;flex-wrap: wrap;'> {d} </ul></td>"
 			elif self.count % 7 == 0:
-				return f"<td class='container col-1'><span style='color:red'>{day}</span><ul class='event_line' style='display:flex'> {d} </ul></td>"
+				return f"<td class='container col-1'><span style='color:red'>{day}</span><ul class='event_line' style='display:flex;flex-wrap: wrap;'> {d} </ul></td>"
 			else:
-				return f"<td class='container col-1'><span>{day}</span><ul class='event_line' style='display:flex'> {d} </ul></td>"
+				return f"<td class='container col-1'><span>{day}</span><ul class='event_line' style='display:flex;flex-wrap: wrap;'> {d} </ul></td>"
 
 		return '<td></td>'
 
