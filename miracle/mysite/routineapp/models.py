@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Rutine(models.Model):
+class Routine(models.Model):
     title = models.CharField(max_length=200)
     detail = models.TextField(max_length=500,null=True)
     time = models.IntegerField(default=0)

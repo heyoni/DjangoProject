@@ -1,28 +1,28 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
-from rutineapp.models import Rutine
+from routineapp.models import Routine
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
 from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
 
-from rutineapp.forms import RutineCreationForm
+from routineapp.forms import RoutineCreationForm
 
 # Create your views here.
-class RutineListView(ListView):
-    model = Rutine
-    context_object_name = 'rutine_list'
-    template_name = 'rutineapp/list.html'
+class RoutineListView(ListView):
+    model = Routine
+    context_object_name = 'routine_list'
+    template_name = 'routineapp/list.html'
     paginate_by = 25
-    queryset = Rutine.objects.all()
+    queryset = Routine.objects.all()
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
-class RutineCreateView(CreateView):
-    model = Rutine
-    form_class = RutineCreationForm
-    template_name = 'rutineapp/create.html'
+class RoutineCreateView(CreateView):
+    model = Routine
+    form_class = RoutineCreationForm
+    template_name = 'routineapp/create.html'
     
     def form_valid(self, form):
         temp_article = form.save(commit=False)
@@ -32,12 +32,12 @@ class RutineCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('rutineapp:list')
+        return reverse('routineapp:list')
 
 
-# class RutineDetailView(DetailView, FormMixin):
-#     model = Rutine
+# class RoutineDetailView(DetailView, FormMixin):
+#     model = Routine
 #     form_class = CommentCreationForm
 
-#     context_object_name = 'target_rutine'
-#     template_name = 'rutineapp/detail.html'
+#     context_object_name = 'target_routine'
+#     template_name = 'routineapp/detail.html'

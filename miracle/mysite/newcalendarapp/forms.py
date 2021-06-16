@@ -7,7 +7,7 @@ class EventForm(ModelForm):
         widgets = {
             'start_time': DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
         }
-        fields = '__all__'
+        fields = ['start_time','title','color']
     
     def __init__(self, *args, **kwargs):
         super(EventForm, self).__init__(*args, **kwargs)

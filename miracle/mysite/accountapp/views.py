@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 # from articleapp.models import Article
-from rutineapp.models import Rutine
+from routineapp.models import Routine
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
 
@@ -29,7 +29,7 @@ class AccountDetailView(DetailView):
     paginate_by = 25
 
     # def get_context_data(self, **kwargs):
-    #     object_list = Rutine.objects.filter(writer=self.get_object())
+    #     object_list = Routine.objects.filter(writer=self.get_object())
     #     return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
 

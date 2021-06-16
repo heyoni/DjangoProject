@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    {% if rutine_list %}
+    {% if routine_list %}
         <div class="container">
             <table class="table">
                 <thead>
-                  <tr>
+                  <tr class="text-center">
                     <th scope="col">루틴 이름</th>
                     <th scope="col">내용</th>
                     <th scope="col">시간</th>
@@ -14,10 +14,10 @@
                 </thead>
                 <tbody>
 
-                {% for rutine in rutine_list %}
+                {% for routine in routine_list %}
                     <a href="#">
                         <!-- update 부분 -->
-                        {% include 'snippets/card.html' with rutine=rutine %}
+                        {% include 'snippets/card.html' with routine=routine %}
                     </a>
                 {% endfor %}
                 </tbody>
@@ -25,14 +25,14 @@
         </div>
     {% else %}
         <div class="text-center">
-            <h1>No Rutines!!</h1>
+            <h1>No Routines!!!</h1>
         </div>
 
     {% endif %}
 
     <div style="text-align: center;">
-        <a href="{% url 'rutineapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2" style="color:white">
-        Create Rutines
+        <a href="{% url 'routineapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2" style="color:white">
+        Create Routines
         </a>
     </div>    
 
