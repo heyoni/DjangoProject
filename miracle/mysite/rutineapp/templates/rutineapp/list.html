@@ -3,11 +3,25 @@
 
     {% if rutine_list %}
         <div class="container">
-            {% for rutine in rutine_list %}
-            <a href=""> 
-                {% include 'snippets/card.html' with rutine=rutine %}
-            </a>
-            {% endfor %}
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">루틴 이름</th>
+                    <th scope="col">내용</th>
+                    <th scope="col">시간</th>
+                    <th scope="col">색</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                {% for rutine in rutine_list %}
+                    <a href="#">
+                        <!-- update 부분 -->
+                        {% include 'snippets/card.html' with rutine=rutine %}
+                    </a>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     {% else %}
         <div class="text-center">
@@ -17,7 +31,7 @@
     {% endif %}
 
     <div style="text-align: center;">
-        <a href="{% url 'rutineapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2">
+        <a href="{% url 'rutineapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2" style="color:white">
         Create Rutines
         </a>
     </div>    

@@ -34,6 +34,7 @@ class RutineCreateView(CreateView):
     def get_success_url(self):
         return reverse('rutineapp:list')
 
+
 # class RutineDetailView(DetailView, FormMixin):
 #     model = Rutine
 #     form_class = CommentCreationForm

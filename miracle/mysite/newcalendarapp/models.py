@@ -13,7 +13,8 @@ class Event(models.Model):
         ("#0000FF", "blue"),
         ("#00498C", "navy"),
         ("#8B00FF", "red"),
-        ("#000000", "black")
+        ("#000000", "black"),
+        ("#FFFFFF", "white")
     ]
 
 
