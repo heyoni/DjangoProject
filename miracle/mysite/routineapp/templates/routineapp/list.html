@@ -15,10 +15,12 @@
                 <tbody>
 
                 {% for routine in routine_list %}
-                    <a href="#">
+                    <a href="{% url 'routineapp:update' pk=routine.pk %}">
+                        여기요
+                    </a>
                         <!-- update 부분 -->
                         {% include 'snippets/card.html' with routine=routine %}
-                    </a>
+                    
                 {% endfor %}
                 </tbody>
             </table>

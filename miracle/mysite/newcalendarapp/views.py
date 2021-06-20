@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 import datetime
-from .models import Event
+from .models import CalendarModel
+from routineapp.models import Routine
 import calendar
 from .calendar import Calendar
 from django.utils.safestring import mark_safe
-from .forms import EventForm
+from .forms import CalendarModelForm
 from django.urls import reverse, reverse_lazy
+
 
 
 def calendarView(request):
@@ -47,15 +49,18 @@ def next_month(day):
 #새로운 Event의 등록 혹은 수정
 def event(request, event_id=None):
     if event_id:
-        instance = get_object_or_404(Event, pk=event_id)
+        instance = get_object_or_404(CalendarModel, pk=event_id)
     else:
-        instance = Event()
+        instance = CalendarModel()
     
-    form = EventForm(request.POST or None, instance=instance)
+    # 루틴이 있는지 확인
+    isRoutinein = Routine.objects.filter
+    
+    form = CalendarModelForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
         form.save()
         return redirect('/calendar/')
-    return render(request, 'calendarapp/input.html', {'form': form})
+    return render(request, 'calendarapp/input.html', {'form': form, 'isRoutinein':isRoutinein})
 
 # def calendarView(request, event_id):
 #     calendar = get_object_or_404(Event, pk=event_id)
@@ -66,3 +71,5 @@ def event(request, event_id=None):
 #             form.save()
 #             return redirect('calendar')
     
+
+

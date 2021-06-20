@@ -1,4 +1,4 @@
-from .models import Event
+from .models import CalendarModel
 from calendar import HTMLCalendar, day_abbr, month_name
 import inspect
 
@@ -30,7 +30,10 @@ class Calendar(HTMLCalendar):
 		self.count += 1
 		events_per_day = events.filter(start_time__day=day)
 		d = ''
+
+		# color 색 순서 정해주기 
 		for event in events_per_day:
+			print(event)
 			if str(event).split(',')[1] == 'red':
 				d += f'<li style="display:flex;order:1;"> {event.get_html_url} </li>'
 			elif str(event).split(',')[1] == 'orange':
@@ -47,6 +50,8 @@ class Calendar(HTMLCalendar):
 				d += f'<li style="display:flex;order:7;"> {event.get_html_url} </li>'
 			elif str(event).split(',')[1] == 'black':
 				d += f'<li style="display:flex;order:8;"> {event.get_html_url} </li>'
+
+
 		if day != 0:
 			# 토, 일요일 색 바꿔주기
 			if self.count % 7 == 6:
@@ -74,7 +79,7 @@ class Calendar(HTMLCalendar):
 	# '월'을 테이블 태그로 변환
 	# 각 '월'과 '연'으로 이벤트 필터
 	def formatmonth(self, withyear=True):
-		events = Event.objects.filter(start_time__year=self.year, start_time__month=self.month)
+		events = CalendarModel.objects.filter(start_time__year=self.year, start_time__month=self.month)
 
 		cal = f'<table class="table table-bordered container">\n'
 		cal += f'{ArrowCalendar.formatmonthname(self.year, self.month, withyear=withyear)}\n'

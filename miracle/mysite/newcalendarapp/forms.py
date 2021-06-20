@@ -1,14 +1,14 @@
 from django.forms import ModelForm, DateInput
-from .models import Event
+from .models import CalendarModel
 
-class EventForm(ModelForm):
+class CalendarModelForm(ModelForm):
     class Meta:
-        model = Event
+        model = CalendarModel
         widgets = {
             'start_time': DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
         }
-        fields = ['start_time','title','color']
+        fields = '__all__'
     
     def __init__(self, *args, **kwargs):
-        super(EventForm, self).__init__(*args, **kwargs)
+        super(CalendarModelForm, self).__init__(*args, **kwargs)
         self.fields['start_time'].input_formats = ('%Y-%m-%d',)
