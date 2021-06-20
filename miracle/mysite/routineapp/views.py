@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
 
 from routineapp.forms import RoutineCreationForm
+from routineapp.decorators import routine_ownership_required
 
 # Create your views here.
 class RoutineListView(ListView):
@@ -16,6 +17,7 @@ class RoutineListView(ListView):
     template_name = 'routineapp/list.html'
     paginate_by = 25
     queryset = Routine.objects.all()
+
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -35,9 +37,24 @@ class RoutineCreateView(CreateView):
         return reverse('routineapp:list')
 
 
-# class RoutineDetailView(DetailView, FormMixin):
-#     model = Routine
-#     form_class = CommentCreationForm
 
-#     context_object_name = 'target_routine'
-#     template_name = 'routineapp/detail.html'
+# @method_decorator(routine_ownership_required, 'get')
+# @method_decorator(routine_ownership_required, 'post')
+class RoutineUpdateView(UpdateView):
+    model = Routine
+    form_class = RoutineCreationForm
+    context_object_name = 'target_routine'
+    template_name = 'routineapp/update.html'
+
+
+    def get_success_url(self):
+        return reverse('routineapp:detail',kwargs={'pk':self.object.pk})
+
+
+# @method_decorator(routine_ownership_required, 'get')
+# @method_decorator(routine_ownership_required, 'post')
+class RoutineDeleteView(DeleteView):
+    model = Routine
+    context_object_name = 'target_routine'
+    template_name = 'routineapp/delete.html'
+    success_url = reverse_lazy('routineapp:list')

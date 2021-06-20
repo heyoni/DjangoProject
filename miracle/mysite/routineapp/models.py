@@ -6,11 +6,12 @@ class Routine(models.Model):
     detail = models.TextField(max_length=500,null=True)
     time = models.IntegerField(default=0)
     color = models.CharField(max_length=150,default='black',null=True)
-
+    
     def __str__(self):
-        return f'{self.title},{self.color}'
+        return self.title
 
 
+        
 # class Color(models.Model):
 #     color = models.ForeignKey(Rutine.color, on_delete=models.CASCADE, related_name='title1')
 

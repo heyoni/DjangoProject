@@ -15,25 +15,29 @@
                 <tbody>
 
                 {% for routine in routine_list %}
-                    <a href="#">
+                    <a href="{% url 'routineapp:update' pk=routine.pk %}">
+                        여기요
+                    </a>
                         <!-- update 부분 -->
                         {% include 'snippets/card.html' with routine=routine %}
-                    </a>
+                    
                 {% endfor %}
                 </tbody>
             </table>
+            <div style="text-align: center;">
+                <button class="btn-success mb-5"><a href="{% url 'routineapp:create' %}">Routine 만들기</a></button>
+            </div> 
         </div>
     {% else %}
-        <div class="text-center">
-            <h1>No Routines!!!</h1>
+        <div class='container text-center mt-5 mb-5'>
+            <h1 class="mb-3">Routine이 없어요😢</h1>
+            <div style="text-align: center;">
+                <button class="btn-success "><a href="{% url 'routineapp:create' %}">Routine 만들기</a></button>
+            </div> 
         </div>
 
     {% endif %}
 
-    <div style="text-align: center;">
-        <a href="{% url 'routineapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2" style="color:white">
-        Create Routines
-        </a>
-    </div>    
+
 
 {% endblock %}
