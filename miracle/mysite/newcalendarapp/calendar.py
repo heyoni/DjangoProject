@@ -33,7 +33,6 @@ class Calendar(HTMLCalendar):
 
 		# color 색 순서 정해주기 
 		for event in events_per_day:
-			print(event)
 			if str(event).split(',')[1] == 'red':
 				d += f'<li style="display:flex;order:1;"> {event.get_html_url} </li>'
 			elif str(event).split(',')[1] == 'orange':
@@ -84,8 +83,6 @@ class Calendar(HTMLCalendar):
 		cal = f'<table class="table table-bordered container">\n'
 		cal += f'{ArrowCalendar.formatmonthname(self.year, self.month, withyear=withyear)}\n'
 		cal += f'{self.formatweekheader()}\n'
-		# print(inspect.getsource(self.formatweekday))
-		# print(cal)
 
 		for week in self.monthdays2calendar(self.year, self.month):
 			cal += f'{self.formatweek(week, events)}\n'
