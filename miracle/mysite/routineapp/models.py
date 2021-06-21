@@ -12,8 +12,3 @@ class Routine(models.Model):
 
 
         
-# class Color(models.Model):
-#     color = models.ForeignKey(Rutine.color, on_delete=models.CASCADE, related_name='title1')
-
-#     def __str__(self):
-#         return f'{self.color}'

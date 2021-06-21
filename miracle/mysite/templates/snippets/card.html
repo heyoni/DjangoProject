@@ -1,12 +1,9 @@
 
 
-<tr class="text-center">
+<tr class="text-center" onClick="location.href='{% url 'routineapp:update' pk=routine.pk %}'" style="cursor:pointer;">
     <td >{{ routine.title }}</td>
     <td>{{ routine.detail }}</td>
     <td>{{ routine.time }}분</td>
     <td><div style='background-color:{{ routine.color }};border-radius:50%;width:15px;height:15px;margin:auto'></div></td>
 
 </tr>
-
-
-<!-- return f'<a href="{url}" class="cal_color {self.color}" style="background-color:{self.color};color:{self.color};float:left;margin:3px 3px; border-radius: 50%;width:12px;height:12px">  </a>' -->

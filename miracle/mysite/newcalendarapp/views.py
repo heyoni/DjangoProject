@@ -62,14 +62,6 @@ def event(request, event_id=None):
         return redirect('/calendar/')
     return render(request, 'calendarapp/input.html', {'form': form, 'isRoutinein':isRoutinein})
 
-# def calendarView(request, event_id):
-#     calendar = get_object_or_404(Event, pk=event_id)
-
-#     if request.method == 'POST':
-#         form = EventForm(request.POST, calendar=calendar)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('calendar')
     
 
 
