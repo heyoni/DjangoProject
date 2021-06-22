@@ -10,7 +10,7 @@
         <a href="{% url 'routineapp:list' %}" class="miracle_header_nav">
             <span>Routines</span>
         </a>
-        <a href="#" class="miracle_header_nav">
+        <a href="{% url 'infoapp:info' %}" class="miracle_header_nav">
             <span>Info</span>
         </a>
         {% if not user.is_authenticated %}
