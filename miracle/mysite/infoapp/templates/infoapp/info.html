@@ -2,10 +2,9 @@
 {% block content %}
 
 
-{% for routine in routine_list %}
-    <p>여기</p>
+{% for routine in routine_info %}
+    {{ routine.time|add:"2" }}
 {% endfor %}
-
 
 
 {% endblock %}
