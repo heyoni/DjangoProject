@@ -12,7 +12,6 @@ from django.urls import reverse, reverse_lazy
 
 def calendarView(request):
     today = get_date(request.GET.get('month'))
-
     prev_month_var = prev_month(today)
     next_month_var = next_month(today)
 

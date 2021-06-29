@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load my_filter %}
 
 
-{% for routine in routine_info %}
-    {{ routine.time|add:"2" }}
-{% endfor %}
+    여기 {{ routine_info|sumFor }} 임다
 
 
 {% endblock %}
+
+
