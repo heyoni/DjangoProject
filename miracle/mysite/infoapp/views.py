@@ -1,12 +1,13 @@
+from calendar import Calendar
+# from mysite.newcalendarapp.models import CalendarModel
 from django.shortcuts import render
-from routineapp.models import Routine
+from newcalendarapp.models import CalendarModel
 from django.views.generic import ListView
 
 
 # Create your views here.
 class InfoListView(ListView):
-    model = Routine
-    context_object_name = 'routine_info'
+    model = CalendarModel
+    context_object_name = 'CalendarModel_info'
     template_name = 'infoapp/info.html'
-    paginate_by = 25
-    queryset = Routine.objects.all()
+    queryset = CalendarModel.objects.all()
