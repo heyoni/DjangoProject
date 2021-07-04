@@ -48,7 +48,7 @@ class RoutineUpdateView(UpdateView):
 
 
     def get_success_url(self):
-        return reverse('routineapp:detail',kwargs={'pk':self.object.pk})
+        return reverse('routineapp:list')
 
 
 # @method_decorator(routine_ownership_required, 'get')
