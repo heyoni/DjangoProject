@@ -1,16 +1,14 @@
 from django import template
-
 register = template.Library()
 
 
 @register.filter
-def sumFor(value):
-    result = 0
-    for i in value:
-        result += int(i.time)
-
-    return result
-
-def cut(value, arg):
-    """Removes all values of arg from the given string"""
-    return value.replace(arg, '')
+def sum_miracle_time(value):
+    sum = 0
+    result = str(value).split('>')
+    for i in result[:-2]:
+        i = i.split(',')[-1]
+        sum += int(i)
+    
+    
+    return sum
