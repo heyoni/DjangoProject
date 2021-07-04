@@ -1,7 +1,14 @@
-<h1>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae dolor perferendis itaque corrupti illum labore, magni unde laborum, possimus molestiae fugit assumenda quis a distinctio ex similique expedita! Dolorem, culpa.
-    Voluptate perferendis magni qui, ea provident officia eum rem cupiditate excepturi porro! Nihil eum quos assumenda qui libero dignissimos ex, accusamus commodi laboriosam velit dolorem numquam tempore illum odit corporis!
-    Distinctio dolorem quia dignissimos officia! Aliquid possimus cupiditate necessitatibus inventore totam assumenda nihil at perspiciatis ex, ad voluptates ullam nam facere omnis recusandae! Perspiciatis ducimus similique aliquid culpa, id vel?
-    Nemo eum placeat eveniet a quod commodi. Nihil itaque quod laudantium reprehenderit error vitae libero delectus omnis nobis laborum doloribus repellendus cupiditate recusandae dolorum, ipsa natus aut sit architecto officiis.
-    Corrupti, nihil reiciendis repellendus voluptatem nam minus amet maxime, quos ea voluptatum exercitationem blanditiis ex inventore expedita vero? Perferendis fugit consectetur provident reiciendis qui obcaecati fuga dolorem cum autem magnam.
-</h1>
+{% extends 'base.html' %}
+{% block content %}
+
+<div style="text-align: center; max-width: 400px; margin: 4rem auto;">
+    <div class="mb-4">
+        <h2>🚮 삭제하기 : {{ target_routine.title }}</h2>
+    </div>
+    <form action="{% url 'routineapp:delete' pk=target_routine.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제하기" class="btn btn-danger rounded-pill col-6 mt-3">
+    </form>
+</div>
+
+{% endblock %}
