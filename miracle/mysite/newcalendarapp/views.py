@@ -7,6 +7,7 @@ from .calendar import Calendar
 from django.utils.safestring import mark_safe
 from .forms import CalendarModelForm
 from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView, DeleteView, ListView
 
 
 
@@ -59,8 +60,21 @@ def event(request, event_id=None):
     if request.POST and form.is_valid():
         form.save()
         return redirect('/calendar/')
-    return render(request, 'calendarapp/input.html', {'form': form, 'isRoutinein':isRoutinein})
+    return render(request, 'calendarapp/input.html', {'form': form, 'isRoutinein':isRoutinein, 'pk':event_id})
 
     
+class calendarDeleteView(DeleteView):
+    model = CalendarModel
+    context_object_name = 'target_calendar'
+    template_name = 'calendarapp/delete.html'
+    success_url = reverse_lazy('calendarapp:calendar')
 
 
+# class calendarUpdateView(UpdateView):
+#     model = CalendarModel
+#     context_object_name = 'target_calendar'
+#     template_name = 'calendarapp/update.html'
+
+
+#     def get_success_url(self):
+#         return reverse('calendarapp:detail',kwargs={'pk':self.object.pk})

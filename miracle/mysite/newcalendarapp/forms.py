@@ -5,10 +5,10 @@ class CalendarModelForm(ModelForm):
     class Meta:
         model = CalendarModel
         widgets = {
-            'start_day': DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+            'start_time': DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
         }
         fields = '__all__'
     
     def __init__(self, *args, **kwargs):
         super(CalendarModelForm, self).__init__(*args, **kwargs)
-        self.fields['start_day'].input_formats = ('%Y-%m-%d',)
+        self.fields['start_time'].input_formats = ('%Y-%m-%d',)

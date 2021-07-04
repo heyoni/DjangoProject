@@ -5,11 +5,12 @@ from django.urls import reverse
 
 
 class CalendarModel(models.Model):
-    start_day = models.DateField("날짜")
+    start_time = models.DateField("날짜")
     title = models.ForeignKey(Routine, on_delete=models.CASCADE, related_name='title1')
 
+
     def __str__(self):
-        return f'{self.title},{self.title.color}'
+        return f'{self.title},{self.title.color},{self.title.time}'
 
     @property
     def get_html_url(self):

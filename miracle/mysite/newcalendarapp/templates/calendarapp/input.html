@@ -5,11 +5,16 @@
         <br>
         <form method="POST">
         {% csrf_token %}
-        <div class="form form-table">
+        <div class="form form-table container w-25">
             {{ form }}
-            <button type="submit" class="btn btn-info right"> Submit </button>
+            <button type="submit" class="btn btn-info right"> 확인 </button>
         </div>
         </form>
+    {% if pk %}
+        <a href="{% url 'calendarapp:delete' pk=pk %}" class="btn btn-danger rounded-pill">
+            삭제하기
+        </a>
+    {% endif %}
     </div>
 {% else %}
     <div class='container text-center mt-5 mb-5'>
