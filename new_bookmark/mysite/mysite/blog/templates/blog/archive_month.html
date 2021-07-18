@@ -1,0 +1,12 @@
+<h1>post archives for {{ month|date:"N, Y"}}</h1>
+
+<div>
+    <ul>
+        {% for post in object_list %}
+        <li>{{ post.modify_dt|date:"Y-m-d"}}
+            <a href="{{ post.get_absolute_url }}">{{ post.title}}</a>
+        </li>
+        {% endfor %}
+
+    </ul>
+</div>
