@@ -1,5 +1,8 @@
-<h1>Blog list</h1>
+{% extends "base.html" %}
+{% block title %} blog/list.html {% endblock %}
+{% block content %}
 
+<h1> blog list </h1>
 {% for post in posts %}
     <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
     {{ post.modify_dt|date:"N d, Y"}}
@@ -19,3 +22,5 @@
         {% endif %}
     </span>
 </div>
+
+{% endblock %}

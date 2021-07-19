@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% block title %} blog/detail.html {% endblock %}
+{% block content %}
 <h2>{{ object.title }}</h2>
 <p>
     {% if object.get_previous %}
@@ -15,3 +18,17 @@
 <div>
     {{ object.content|linebreaks}}
 </div>
+
+<br>
+<div>
+    <b>TAGS</b> <i class="fas fas-tag"></i>
+    {% load taggit_templatetags2_tags %}
+    <!-- object : PostDetailView에서 넘겨주는 컨텍스트 변수, 특정 Post객체가 들어있음. 추출한 태그 리스트는 tags 템플릿변수에 할당한다! as를 이용하여 변수할당!-->
+    {% get_tags_for_object object as "tags" %}
+    {% for tag in tags %}
+    <a href="{% url 'blog:tagged_object_list' tag.name %}">{{ tag.name }}</a>
+    {% endfor %}
+    <a href="{% url 'blog:tag_cloud' %}"><span class="btn btn_info btn-sm">TagCloud</span></a>
+</div>
+
+{% endblock %}
