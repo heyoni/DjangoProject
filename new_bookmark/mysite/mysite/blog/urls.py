@@ -12,7 +12,8 @@ urlpatterns = [
     path('archive/<int:year>/<str:month>/',views.PostMonthArchiveView.as_view(),name='post_month_archive'),
     path('archive/<int:year>/<str:month>/<int:day>/',views.PostDayArchiveView.as_view(),name='post_day_archive'),
     path('archive/today/',views.PostTodayArchiveView.as_view(),name='post_today_archive'),
-
+    path('tag/',views.TagCloudTemplateView.as_view(), name='tag_cloud'),
+    path('tag/<str:tag>/',views.TaggedObjectListView.as_view(), name='tagged_object_list'),
     
     
 ]

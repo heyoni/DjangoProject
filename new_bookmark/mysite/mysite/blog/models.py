@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from taggit.managers import TaggableManager
 class Post(models.Model):
     title = models.CharField(verbose_name='TITLE', max_length=50)
     # 제목의 별칭, 폼화면에서 레이블로 사용되는 문구
@@ -9,7 +9,8 @@ class Post(models.Model):
     content = models.TextField('CONTENT')
     create_dt = models.DateTimeField('CREATE DATE',auto_now_add=True)
     modify_dt = models.DateTimeField('MODIFY DATE',auto_now=True)
-
+    # tagbaleManager는 manyToMany이면서 models.Manager역할을 동시헤 해줌
+    tags = TaggableManager(blank=True)
 
     # 필드속성 이외에 필요한 파라미터가 있을 경우 meta 내부 클래스로 정의한다.
     class Meta:
