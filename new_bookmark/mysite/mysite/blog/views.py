@@ -1,12 +1,20 @@
+import django
+from mysite.mysite.blog.forms import PostSearchForm
 from typing import List
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView
 from django.views.generic.base import TemplateView
 from django.views.generic.dates import ArchiveIndexView, YearArchiveView, MonthArchiveView
 from django.views.generic.dates import DayArchiveView, TodayArchiveView
 
 
 from blog.models import Post
+from django.conf import settings
+
+from blog.forms import PostSearchForm
+from django.db.models import Q
+from django.shortcuts import render
+
 
 class PostListView(ListView):
     model = Post
@@ -18,6 +26,13 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['disqus_short'] = f"{settings.DISQUS_SHORTNAME}"
+        context['disqus_id'] = f"post-{self.object.id}-{self.object.slug}"
+        context['disqus_url'] = f"{settings.DISQUS_MY_DOMAIN}{self.object.get_absolute_url()}"
+        context['discuss_title'] = f"{self.object.slug}"
+        return context
 
 class PostArchiveView(ArchiveIndexView):
     model = Post
@@ -73,3 +88,20 @@ class TaggedObjectListView(ListView):
         # tagname이라는 변수를 새로 추가하고 URL에서 tag 파라미터로 넘어온 값을 넣어줌. -> urls.py에서 'tag/<str:tag>'로 정의해줬었음
         context['tagname'] = self.kwargs['tag']
         return context
+
+
+
+class SearchFormView(FormView):
+    form_class = PostSearchForm
+    template_name = 'blog/post_search.html'
+
+    def form_valid(self, form):
+        searchWord = form.cleaned_date['search_word']
+        post_list = Post.objects.filter(Q(title__icontains=searchWord) | Q(decription__icontains=searchWord) | Q(content__icontains=searchWord)).distinct()
+
+        context={}
+        context['form'] = form
+        context['search_form'] = searchWord
+        context['object_title'] = post_list
+
+        return render(self.request, self.template_name, context)
