@@ -1,6 +1,3 @@
-import django
-from mysite.mysite.blog.forms import PostSearchForm
-from typing import List
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, FormView
 from django.views.generic.base import TemplateView
@@ -90,18 +87,20 @@ class TaggedObjectListView(ListView):
         return context
 
 
+# FormView 제네릭뷰는 Get요청인 경우에는 폼을 화면에 보여주고 사용자의 입력을 기다림
+# 사용자가 폼을 입력 후 제출하면 Post 요청으로 접수되며 FormView에서 유효성 검사를 하고 
+# 데이터가 유효하면 form_valid() 함수를 실행하고 적절한 url로 보내줌.
+class SearchFormView(FormView): 
+    form_class = PostSearchForm 
+    template_name = 'blog/post_search.html' 
 
-class SearchFormView(FormView):
-    form_class = PostSearchForm
-    template_name = 'blog/post_search.html'
+    def form_valid(self, form): 
+        searchWord = form.cleaned_data['search_word']
+        post_list = Post.objects.filter(Q(title__icontains=searchWord) |  Q(description__icontains=searchWord) | Q(content__icontains=searchWord)).distinct()
 
-    def form_valid(self, form):
-        searchWord = form.cleaned_date['search_word']
-        post_list = Post.objects.filter(Q(title__icontains=searchWord) | Q(decription__icontains=searchWord) | Q(content__icontains=searchWord)).distinct()
+        context = {} 
+        context['form'] = form 
+        context['search_term'] = searchWord 
+        context['object_list'] = post_list 
 
-        context={}
-        context['form'] = form
-        context['search_form'] = searchWord
-        context['object_title'] = post_list
-
-        return render(self.request, self.template_name, context)
+        return render(self.request, self.template_name, context)   # No Redirection
