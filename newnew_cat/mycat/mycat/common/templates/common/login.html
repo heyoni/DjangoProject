@@ -11,9 +11,9 @@
     </div>
     <form method="post" class="post-form" action="#">
         {% csrf_token %}
+        {% include "form_errors.html" %}
         <!-- 로그인 성공 후 이동할 수 있는 URL -->
         <input type="hidden" name="next" value="{{ next }}">
-        ###
         <div class="form-group">
             <label for="username">사용자ID</label>
             <input type="text" class="form-control" name="username" id="username"
