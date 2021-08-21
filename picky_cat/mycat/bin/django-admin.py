@@ -1,4 +1,4 @@
-#!/Users/hailey/Documents/DjangoProject/eatcat/mycat/bin/python
+#!/Users/hailey/Documents/DjangoProject/picky_cat/mycat/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
