@@ -1,7 +1,7 @@
 from django.urls import path
 from feddList.views import FeedListView,FeedListCreateView,FeedListUpdateView,FeedListDeleteView,FeedListDetailView
 
-app_name = 'feedList'
+app_name = 'feedlist'
 
 urlpatterns = [
     path('', FeedListView.as_view(), name='list'),
