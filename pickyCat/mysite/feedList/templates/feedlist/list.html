@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+  {% if target_feed %}
+  <div class="container">
+    {% for feedlist in target_feed %}
+    <a href="{% url 'feedlist:detail' pk=feedlist.pk %}">
+      {% include 'snippets/card.html' with target_feed=target_feed %}
+    </a>
+    {% endfor %}
+  </div>
+  <script src="{% static 'js/magicgrid.js' %}"></script>
+
+  {% else %}
+  <div class="text-center">
+    <h1>입력된 사료가 없어요!</h1>
+  </div>
+  {% endif %}
+
+  {% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+  <div style="text-align: center; margin-top: 50px;">
+    <a href="{% url 'feedlist:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2" style='color:yellow'>
+      사료 입력하러 가기
+    </a>
+  </div>
+
+
+{% endblock %}
