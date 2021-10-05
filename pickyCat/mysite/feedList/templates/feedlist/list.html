@@ -25,9 +25,15 @@
   {% include 'snippets/pagination.html' with page_obj=page_obj %}
 
   <div style="text-align: center; margin-top: 50px;">
+    {% if target_feed %}
+    <a href="{% url 'feedlist:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2" style='color:yellow'>
+      추가하기
+    </a>
+    {% else %}
     <a href="{% url 'feedlist:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-2" style='color:yellow'>
       사료 입력하러 가기
     </a>
+    {% endif %}
   </div>
 
 
